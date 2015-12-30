@@ -1,0 +1,5 @@
+<div class="header flexbox">
+    <a class="block ng-back" ng-click="back()"><span class="back-icon"></span></a>
+    <div class="flex-item text-center large ng-title">{{ pageName }}</div>
+    <a ng-click="back()" class="cog">保存</a>
+</div>

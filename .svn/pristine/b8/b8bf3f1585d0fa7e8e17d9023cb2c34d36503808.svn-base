@@ -1,0 +1,14 @@
+店铺评论
+<div class="comment-list row">
+    <div class="comment-item" ng-repeat="comment in product.comment.contents">
+        <h4 class="text-red">{{ comment.username }}ss</h4>
+        <p class="nowrap text-darkgrey">{{ comment.content }}ss</p>
+
+        <img class="avatar" src="" alt="">
+        <div class="stars">
+            <span class="star-icon" ng-repeat="n in getArray(comment.star) track by $index"></span>
+        </div>
+        <div class="date text-grey">{{ comment.post_time }}</div>
+        <div class="line"></div>
+    </div>
+</div>

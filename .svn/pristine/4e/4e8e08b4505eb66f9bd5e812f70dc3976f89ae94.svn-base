@@ -1,0 +1,34 @@
+<div class="text-center text-grey box box-lg">正在加载</div>
+<div ng-repeat="store in stores" ng-show="loaded">
+    <a ng-click="next()" ng-href="#/store/{{ store.id }}" class="block box info-section">
+            <div class="thumbnail">
+                <img class="block" ng-src="{{ IMG_PATH + store.cover }}" alt="">
+            </div>
+            <p class="text-light-grey big nowrap">{{ store.name}}</p>
+            <div class="row">
+                <div class="col-xs-6">
+                    <p class="text-light-grey nowrap">
+                        <span>人均：{{ store.percapita }}</span>
+                    </p>
+                </div>
+                <div class="col-xs-6 nowap text-right">
+                    <p class="stars">
+                        <span class="star-icon" ng-repeat="n in getArray(store.star) track by $index"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <p class="text-light-grey nowrap">
+                        <span>{{ store.type }}</span>
+                    </p>
+                </div>
+                <div class="col-xs-6 nowap">
+                    <p class="text-light-grey text-right">
+                        {{ toInt(store.distance) }}m
+                    </p>
+                </div>
+            </div>
+        </a>
+    <div class="line box-mb"></div>
+</div>

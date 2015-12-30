@@ -1,0 +1,17 @@
+<div ng-repeat="exchange in exchanges">
+    <a ng-click="next()" ng-href="#/exchange_exchange_info/{{ exchange.id }}" class="block box bg-white info-section">
+        <div class="thumbnail">
+            <img class="block" ng-src="{{ exchange.cover }}" alt="">
+        </div>
+        <p class="text-light-grey big nowrap">{{ exchange.title }}</p>
+        <div class="row box box-tb">
+            <div class="col-xs-6 nowrap text-red">
+                {{ exchange.price }}
+            </div>
+            <div class="col-xs-6 nowrap text-light-grey text-right">
+                {{ exchange.total }}
+            </div>
+        </div>
+    </a>
+    <div class="line"></div>
+</div>

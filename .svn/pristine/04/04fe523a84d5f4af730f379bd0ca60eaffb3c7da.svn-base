@@ -1,0 +1,47 @@
+<div class="shopping-items flex-item scroll">
+    <div class="text-grey box box-lg text-center" ng-show="items.length < 1">购物车为空</div>
+    <div class="box-mb shopping-item bg-white" ng-repeat="item in items" ng-show="items.length > 0">
+        <div class="block box info-section">
+            <div class="thumbnail">
+                <img class="block" ng-src="{{item.img}}" alt="">
+            </div>
+            <p class="text-light-grey big nowrap">{{ item.name }}</p>
+            <p class="ng-price x-small">{{ item.price }}</p>
+            <div class="text-grey nowrap">
+                <span class="chosen">已选</span>
+                <span>颜色：</span>
+                <span class="text-red">{{ item.color }}</span>&nbsp;&nbsp;&nbsp;
+                <span>尺码：</span>
+                <span class="text-red">{{ item.size }}</span>&nbsp;&nbsp;&nbsp;
+                <span>数量：</span>
+                <span class="text-red">{{ item.quantity }}</span>
+            </div>
+            
+        </div>
+        <div class="box-mt box box-lr">
+            <div class="line light-grey"></div>
+        </div>
+        <div class="clearfix box">
+            <div class="col-xs-12 text-red text-right nowrap">合计：
+                <span class="text-red">{{ item.price }}</span>
+            </div>
+        </div>
+        <label class="radio-label {{ item.clearing == true ? 'active':'' }}">
+            <input type="checkbox" ng-model="item.clearing" class="hide" value="all">
+        </label>
+        <div class="line grey"></div>
+    </div>
+</div>
+<!-- footer -->
+<div class="shopping-action box bg-white" ng-show="items.length > 0">
+    <div class="row">
+        <div class="col-xs-9 vertical">
+            <label class="radio-label vertical {{ total == true ? 'active':'' }}" ng-click="all()"></label>
+            <span class="text-red vertical">总计：{{ sum() }}</span>
+        </div>
+        <div class="col-xs-3">
+            <a class="btn btn-danger block" ng-href="#/charge_comfirm" ng-click="next()" ng-show="actionMenu=='编辑'">结算</a>
+            <a class="btn btn-danger block" ng-click="removeItem()" ng-show="actionMenu=='完成'">删除</a>            
+        </div>
+    </div>
+</div>

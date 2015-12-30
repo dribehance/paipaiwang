@@ -1,0 +1,15 @@
+<div class="box box-lg avatar-bar">
+	头像
+	<div class="avatar">
+		<img src="" alt="" class="block">
+	</div>
+</div>
+<div class="line box-mb"></div>
+<label class="block edit-label box box-lr">
+	<span class="text-light-grey box">昵称</span>
+	<input type="text" class="block box text-right text-grey pretty-input" value="书上的鸟">
+</label>
+<label class="block edit-label box box-lr box-shadow">
+	<span class="text-light-grey box">性别</span>
+	<input type="text" class="block box text-right text-grey pretty-input" value="男">
+</label>

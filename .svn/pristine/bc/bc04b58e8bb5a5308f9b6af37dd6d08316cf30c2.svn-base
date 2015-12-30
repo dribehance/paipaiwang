@@ -1,0 +1,40 @@
+<div class="input-group block input-group-lg box-mb box box-lg">
+    <input type="text" class="form-control" ng-model="telephone" ng-init="telephone=13768132373">
+</div>
+<div class="row box box-lg">
+    <div class="col-xs-4">
+        <label class="btn btn-{{ money == '100' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="money" ng-init="money=100" value="100">100元
+        </label>
+    </div>
+    <div class="col-xs-4">
+        <label class="btn btn-{{ money == '200' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="money" value="200">200元
+        </label>
+    </div>
+    <div class="col-xs-4">
+        <label class="btn btn-{{ money == '300' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="money" value="300">300元
+        </label>
+    </div>
+</div>
+<div class="row box box-lg">
+    <div class="col-xs-4">
+        <label class="btn btn-{{ money == '400' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="money" value="400">400元
+        </label>
+    </div>
+    <div class="col-xs-4">
+        <label class="btn btn-{{ money == '500' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="money" value="500">500元
+        </label>
+    </div>
+    <div class="col-xs-4">
+        <label class="btn btn-{{ money == '600' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="money" value="600">600元
+        </label>
+    </div>
+</div>
+<div class="box box-lg">
+	<a ng-href="#/charge_comfirm" class="btn btn-danger btn-lg text-center block">确定</a>
+</div>

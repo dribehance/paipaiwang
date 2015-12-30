@@ -1,0 +1,33 @@
+{
+    "product": {
+        "pictures_2": "DSC02585.JPG",
+        "id": 18,
+        "include_mail": 1,
+        "pictures_3": "DSC02586.JPG",
+        "title": "夏天花点裙子",
+        "cover": "DSC02420.JPG",
+        "sales_volume": 2,
+        "price": 58.5,
+        "brand_id": 2,
+        "introduction": "<p><span style=\"color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 24px; background-color: rgb(245, 245, 245);\">你是怎么修改的？<\/span><br style=\"box-sizing: content-box; color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 24px; white-space: normal; background-color: rgb(245, 245, 245);\"\/><span style=\"color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 24px; background-color: rgb(245, 245, 245);\">确定是修改了配置文件server.xml中的&lt;Connector&gt;节点，指定maxPostSize属性？比如设置为maxPostSize=&quot;0&quot;<\/span><br style=\"box-sizing: content-box; color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 24px; white-space: normal; background-color: rgb(245, 245, 245);\"\/><span style=\"color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 24px; background-color: rgb(245, 245, 245);\">另外，你启动Tomcat是独立启动（运行startup.bat）还是在Eclipse中直接启动的？两者修改配置文件的方式不同。<\/span><\/p>",
+        "pictures_1": "DSC02581.JPG"
+    },
+    "record": {
+        "pageSize": 5,
+        "pageNumber": 1,
+        "list": [],
+        "totalRow": 0,
+        "totalPage": 0
+    },
+    "brand": {
+        "summary": "1995年秋季诞生于美国纽约曼哈顿，由James Jebbia创办。说来奇怪，James Jebbia虽然很喜欢以及热爱滑板运动，自己却是不懂滑板的。supreme的本意是最高、至上的。Supreme是结合滑板、Hip-hop等文化并主要以滑板为主的美国街头服饰品牌。",
+        "name": "Supreme"
+    },
+    "comment": {
+        "pageSize": 5,
+        "pageNumber": 1,
+        "list": [],
+        "totalRow": 0,
+        "totalPage": 0
+    }
+}

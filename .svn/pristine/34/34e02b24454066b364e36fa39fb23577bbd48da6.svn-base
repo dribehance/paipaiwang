@@ -1,0 +1,14 @@
+<div class="header flexbox">
+    <div class="slogan flex-item">
+        <div class="text-center nowrap">
+            <span class="logo"></span>
+            <span>快找家教引领拇指时代</span>
+        </div>
+    </div>
+    <div class="location">
+        <select name="location" id="location">
+            <option value="深圳">深圳</option>
+            <option value="广州" selected>广州</option>
+        </select>
+    </div>
+</div>

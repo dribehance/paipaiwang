@@ -1,0 +1,22 @@
+<label class="block edit-label needle box box-lg box-lr">
+	<span class="text-grey box">收货人</span>
+	<input type="text" class="block box text-light-grey pretty-input" value="书上的鸟">
+</label>
+<label class="block edit-label needle box box-lg box-lr box-shadow">
+	<span class="text-grey box">手机号码</span>
+	<input type="text" class="block box text-light-grey pretty-input" value="男">
+</label>
+<label class="block edit-label needle box box-lg box-lr box-shadow">
+	<span class="text-grey box">邮政编码</span>
+	<input type="text" class="block box text-light-grey pretty-input" value="男">
+</label>
+<label class="block edit-label needle box box-lg box-lr box-shadow">
+	<span class="text-grey box">所在地区</span>
+	<input type="text" class="block box text-light-grey pretty-input" value="男">
+</label>
+<label class="block edit-label needle box box-lg box-lr box-shadow">
+	<span class="text-grey box">详细地址</span>
+	<input type="text" class="block box text-light-grey pretty-input" value="男">
+</label>
+<a href="#/address_delete" class="text-red block box box-lg">删除收货地址</a>
+<div class="line"></div>

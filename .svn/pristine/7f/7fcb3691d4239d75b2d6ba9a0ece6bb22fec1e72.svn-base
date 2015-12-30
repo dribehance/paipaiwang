@@ -1,0 +1,57 @@
+<div class="text-grey text-center box box-lg" ng-show="!loaded">正在加载</div>
+<div class="text-grey text-center box box-lg" ng-show="loaded && results.length < 1">无记录</div>
+<div class="box-mb bg-white" ng-repeat="order in orders | filter:{'status':orderStatus} as results" ng-show="loaded">
+    <a ng-href="#/orders/{{ order.id }}" class="block box info-section">
+        <div class="thumbnail">
+            <img class="block" ng-src="{{ IMG_PATH + order.img }}" alt="">
+        </div>
+        <p class="text-light-grey big nowrap">{{ order.title }}</p>
+        <p class="ng-price x-small">{{ order.price }}</p>
+        <div class="text-grey nowrap">
+            <span class="chosen">已选</span>
+            <!--<span>颜色：</span>
+            <span class="text-red">{{ order.color }}</span>&nbsp;&nbsp;&nbsp;
+            <span>尺码：</span>
+            <span class="text-red">{{ order.size }}</span>&nbsp;&nbsp;&nbsp;-->
+            <span>数量：</span>
+            <span class="text-red">{{ order.total }} </span>
+        </div>
+    </a>
+    <div class="box-mt">
+        <div class="line grey"></div>
+    </div>
+    <div class="clearfix box">
+        <div class="col-xs-4 text-red text-left btn nowrap">{{ order.price }}</div>
+        <div class="col-xs-8 text-right nowrap" ng-switch="order.status">
+            <div ng-switch-when="-1">
+                <a ng-click="orderCancel()" class="btn btn-default">取消订单</a>
+                <a ng-click="next()" ng-href="#/order_comfirm" class="btn btn-default">付款</a>
+            </div>
+            <div ng-switch-when="0">
+                <a ng-click="orderCancel()" class="btn btn-default">取消订单</a>
+                <a ng-click="next()" ng-href="#/order_comfirm" class="btn btn-default">付款</a>
+            </div>
+            <div ng-switch-when="1">
+                <span class="btn">待发货</span>
+            </div>
+            <div ng-switch-when="2">
+                <a ng-click="next()" ng-href="#/order_track/55" class="btn btn-default">查看物流</a>
+                <a ng-click="orderReach()" class="btn btn-default">确认收货</a>
+            </div>
+            <div ng-switch-when="3">
+                <a ng-click="next()" ng-href="#/comment" class="btn btn-default">评价</a>
+            </div>
+            <div ng-switch-when="4">
+                <span class="btn text-green">退货中</span>
+            </div>
+            <div ng-switch-when="5">
+                <span class="btn text-green">已删除</span>
+            </div>
+            <div ng-switch-when="6">
+                <a ng-click="next()" ng-href="#/order_exchange" class="btn btn-default">查看兑换码</a>
+                <span class="btn">已评价</span>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+</div>

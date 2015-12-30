@@ -1,0 +1,17 @@
+<div class="text-grey text-center box box-lg" ng-class="loading">
+<span class="preloader"></span><span>正在加载</span></div>
+<div class="text-grey text-center box box-lg" ng-show="loaded && messages.length < 1"><div class="no-data blink"></div><div>暂无数据</div></div>
+<div class="box box-lg bg-white box-mb" ng-repeat="message in messages" ng-show="loaded">
+	<div class="row">
+		<div class="col-xs-6 nowrap">
+			<span class="text-green">系统消息</span>
+		</div>
+		<div class="col-xs-6 text-light-grey nowrap text-right">
+			{{ message.post_time }}
+		</div>
+	</div>
+	<div class="line box-mt"></div>
+	<div class="box box-lg text-grey">
+		{{ message.message_info }}	
+	</div>
+</div>

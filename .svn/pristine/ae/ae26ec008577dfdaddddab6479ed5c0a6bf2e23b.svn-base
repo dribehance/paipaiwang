@@ -1,0 +1,78 @@
+<div class="box-mb box-shadow">
+	<a ng-click="next()" ng-href="#/" class="block box box-lg detail-bar bg-white">
+		<div class="row">
+			<div class="col-xs-6 text-light-grey">
+				收件人：{{ contact.user_name }}
+			</div>
+			<div class="col-xs-6 text-light-grey">
+				电话：{{ contact.mobile_phone}}
+			</div>
+			<div class="col-xs-12 text-light-grey nowrap">
+				收件地址：{{ contact.province + contact.city + contact.street }}
+			</div>
+		</div>
+		<div class="arrow-right"></div>
+	</a>
+	<div class="line grey"></div>
+</div>
+<div class="box-mb box-shadow bg-white">
+	<div class="block box box-lg  info-section">
+        <div class="thumbnail">
+            <img class="block" ng-src="{{ IMG_PATH + product.cover }}" alt="">
+        </div>
+        <p class="text-light-grey big nowrap">{{ product.title }}</p>
+        <p class="ng-price x-small">
+            <span class="box-r">￥{{ product.price }}</span>
+            <span class="chosen">底价</span>
+        </p>
+        <div class="row">
+            <div class="col-xs-6 nowrap">
+                <span class="text-light-grey box-r small">加价幅度</span>
+                <span class="text-red">{{ product.increase_price }}</span>
+            </div>
+            <!--<div class="col-xs-6 nowrap text-right">
+                <span class="text-red small">出价</span>
+                <span class="ng-price small box-r">{{ bid.maxBid }}</span>
+            </div>-->
+        </div>
+    </div>
+    <!--<div class="box-lr"><div class="line"></div></div>
+    <div class="box box-lg text-red small">合计：</div>-->
+    <div class="line grey"></div>
+</div>
+<div class="box-mb bg-white box-shadow">
+	<div class="row box box-lg">
+		<div class="col-xs-6 text-light-grey">
+			<span class="btn">出价</span>
+		</div>
+		<div class="col-xs-offset-4 col-xs-2 text-light-grey text-right">
+			<input type="text" ng-model="bid.maxBid" value="{{ bid.maxBid }}" class="form-control text-center">
+		</div>
+	</div>
+	<div class="line grey"></div>
+</div>
+<div class="box-mb bg-white box-shadow">
+	<div class="row box box-lg">
+		<div class="col-xs-6 text-light-grey">
+			<span class="btn">配送方式</span>
+		</div>
+		<div class="col-xs-6 text-light-grey text-right">
+			快递&nbsp;&nbsp;&nbsp;{{ getDelivery(product.include_mail) }}
+		</div>
+	</div>
+	<div class="line grey"></div>
+</div>
+<div class="box-mb bg-white box-shadow ">
+	<div class="row box box-lg">
+		<div class="col-xs-6 text-light-grey">
+			<span class="btn">合计</span>
+		</div>
+		<div class="col-xs-6 text-light-grey text-right">
+			{{ bid.maxBid }}
+		</div>
+	</div>
+	<div class="line grey"></div>
+</div>
+<div class="box-mb">
+	<p class="text-center text-light-grey">确认竞拍后将冻结您账户相应拍币</p>
+</div>

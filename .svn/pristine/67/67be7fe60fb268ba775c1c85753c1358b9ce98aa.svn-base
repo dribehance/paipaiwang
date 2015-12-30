@@ -1,0 +1,119 @@
+<div ng-include="'partials/product/banner.html'"></div>
+<div class="box">
+	<h3 class="ng-title big">{{ product.title }}</h3>
+	<div class="row">
+		<div class="col-xs-6">
+			<span class="ng-price small">{{ '￥'+ product.price }}</span>
+		</div>
+		<div class="col-xs-6 text-right">
+			<span class="ng-buyer small">{{ product.sales_volume }}</span>
+		</div>
+	</div>
+</div>
+<div class="ng-tab">
+	<ul class="ls">
+		<li class="col-xs-3">
+			<label class="ng-label small active-{{ checked == 1 }}"><input type="radio" name="tab-group" ng-model="checked" value="1" class="hide">商品介绍</label>
+		</li>
+		<li class="col-xs-3">
+			<label class="ng-label small active-{{ checked == 2 }}"><input type="radio" name="tab-group" ng-model="checked" value="2" class="hide">评价详情</label>
+		</li>
+		<li class="col-xs-3">
+			<label class="ng-label small active-{{ checked == 3 }}"><input type="radio" name="tab-group" ng-model="checked" value="3" class="hide">品牌展示</label>
+		</li>
+		<li class="col-xs-3">
+			<label class="ng-label small active-{{ checked == 4 }}"><input type="radio" name="tab-group" ng-model="checked" value="4" class="hide">成交记录</label>
+		</li>
+	</ul>
+	<div class="ng-tab-content">
+		<div class="ng-tab-content" ng-init="checked=1" ng-show="checked == 1">
+			<div ng-bind-html="trustAsHtml(product.introduction)"></div>
+		</div>
+		<div class="ng-tab-content" ng-show="checked == 2">
+			<div ng-include="'partials/product/comment.html'"></div>
+		</div>
+		<div class="ng-tab-content" ng-show="checked == 3">
+			<div ng-include="'partials/product/brand.html'"></div>
+		</div>
+		<div class="ng-tab-content" ng-show="checked == 4">
+			<div ng-include="'partials/product/record.html'"></div>
+		</div>
+	</div>
+</div>
+<div class="shopping-cart slideUp" ng-class="slideUp">
+    <div class="bg-transparent"></div>
+    <div class="shopping-cart-content">
+    	<a class="block ng-close" ng-click="close()">
+	        <span class="close-icon"></span>
+	    </a>
+        <div class="box text-center text-light-grey large">加入购物车</div>
+        <div class="line"></div>
+        <div class="box info-section bg-white">
+        	<div class="thumbnail">
+        		<img class="block" src="" alt="">
+        	</div>
+            <p class="text-light-grey big nowrap">{{ product.title }}</p>
+            <p class="ng-price x-small">{{ product.price }}</p>
+            <div class="text-grey nowrap">
+                <span class="chosen">已选</span>
+                <span>颜色：</span>
+                <span class="text-red">{{ order.meta_1 }}</span>&nbsp;&nbsp;&nbsp;
+                <span>尺码：</span>
+                <span class="text-red">{{ order.meta_2 }}</span>&nbsp;&nbsp;&nbsp;
+                <span>数量：</span>
+                <span class="text-red">{{ order.total }}</span>
+            </div>
+        </div>
+        <div class="box color-section">
+            <div class="box-tb text-darkgrey">颜色</div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <label class="btn btn-{{ color == 'black' ? 'danger':'default'}} block">
+                        <input type="radio" class="hide" ng-model="color" value="black">黑色</label>
+                </div>
+                <div class="col-xs-4">
+                    <label class="btn btn-{{ color == 'white' ? 'danger':'default'}} block">
+                        <input type="radio" class="hide" ng-model="color" value="white">白色</label>
+                </div>
+                <div class="col-xs-4">
+                    <label class="btn btn-{{ color == 'red' ? 'danger':'default'}} block">
+                        <input type="radio" class="hide" ng-model="color" value="red">红色</label>
+                </div>
+            </div>
+        </div>
+        <div class="box size-section">
+            <div class="box-tb text-darkgrey">尺码</div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <label class="btn btn-{{ size == 'S' ? 'danger':'default'}} block">
+                        <input type="radio" class="hide" ng-model="size" value="S">S</label>
+                </div>
+                <div class="col-xs-4">
+                    <label class="btn btn-{{ size == 'M' ? 'danger':'default'}} block">
+                        <input type="radio" class="hide" ng-model="size" value="M">M</label>
+                </div>
+                <div class="col-xs-4">
+                    <label class="btn btn-{{ size == 'L' ? 'danger':'default'}} block">
+                        <input type="radio" class="hide" ng-model="size" value="L">L</label>
+                </div>
+            </div>
+        </div>
+        <div class="box amount-section">
+            <div class="box-tb text-darkgrey">数量</div>
+            <div class="amount-box">
+                <div class="input-group has-error">
+                    <span class="input-group-addon" ng-click="amountMinus()">-</span>
+                    <input class="form-control text-center" type="tel" ng-init="amount=1" min="0" max="99" ng-model="amount">
+                    <span class="input-group-addon" ng-click="amountPlus()">+</span>
+                </div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="box text-center submit-section">
+        	
+        	<div class="row">
+        		<div class="col-xs-offset-4 col-xs-4"><a ng-click="test" class="btn btn-danger block">确定</a></div>
+        	</div>
+        </div>
+    </div>
+</div>

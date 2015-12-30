@@ -1,0 +1,50 @@
+<div class="box-mb bg-white" ng-repeat="order in orders | filter:{'state':orderState}">
+    <a ng-href="#/orders/555" class="block box info-section">
+        <div class="thumbnail">
+            <img class="block" ng-src="{{ order.img }}" alt="">
+        </div>
+        <p class="text-light-grey big nowrap">{{ order.name }}</p>
+        <p class="ng-price x-small">{{ order.price }}</p>
+        <div class="text-grey nowrap">
+            <span class="chosen">已选</span>
+            <span>颜色：</span>
+            <span class="text-red">{{ order.color }}</span>&nbsp;&nbsp;&nbsp;
+            <span>尺码：</span>
+            <span class="text-red">{{ order.size }}</span>&nbsp;&nbsp;&nbsp;
+            <span>数量：</span>
+            <span class="text-red">{{ order.amount }} </span>
+        </div>
+    </a>
+    <div class="box-mt">
+        <div class="line grey"></div>
+    </div>
+    <div class="clearfix box box-lg">
+        <div class="col-xs-4 text-red text-left btn nowrap">{{ order.price }}</div>
+        <div class="col-xs-8 text-right nowrap" ng-switch="order.state">
+            <div ng-switch-when="unpaid">
+                <a ng-click="orderCancel()" class="btn btn-default">取消订单</a>
+                <a ng-click="next()" ng-href="#/order_comfirm" class="btn btn-default">付款</a>
+            </div>
+            <div ng-switch-when="unreach">
+                <a ng-click="next()" ng-href="#/order_track/55" class="btn btn-default">查看物流</a>
+                <a ng-click="orderReach()" class="btn btn-default">确认收货</a>
+            </div>
+            <div ng-switch-when="uncomfirm">
+                <span class="btn">待发货</span>
+            </div>
+            <div ng-switch-when="comfirm">
+                <a ng-click="next()" ng-href="#/order_exchange" class="btn btn-default">查看兑换码</a>
+            </div>
+            <div ng-switch-when="uncomment">
+                <a ng-click="next()" ng-href="#/comment" class="btn btn-default">评价</a>
+            </div>
+            <div ng-switch-when="comment">
+                <span class="btn">已经评价</span>
+            </div>
+            <div ng-switch-when="returning">
+                <span class="btn text-green">退货中</span>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+</div>

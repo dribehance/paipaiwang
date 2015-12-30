@@ -1,0 +1,2 @@
+<div ng-include="'partials/payment/header.html'"></div>
+<div ng-include="'partials/payment/content.html'"></div>

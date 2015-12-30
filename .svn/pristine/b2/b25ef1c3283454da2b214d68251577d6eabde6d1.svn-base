@@ -1,0 +1,7 @@
+<div class="box box-lg">
+	<input type="tel" class="block box box-lg text-grey pretty-input" ng-model="password-1" placeholder="密码">
+	<div class="line"></div>
+	<input type="password" class="block box box-lg text-grey pretty-input" ng-model="password-2" placeholder="再次输入">
+	<div class="box"></div>
+	<input type="submit" class="btn btn-danger btn-lg block text-center" id="submit" value="完成" />
+</div>

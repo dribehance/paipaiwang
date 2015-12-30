@@ -1,0 +1,18 @@
+<div class="newaddress">
+    <a href="#/nearby_stores" ng-click="next()" class="city-4 block">
+        <img class="ui-li" ng-src="img/city-home.png">
+        <span class="city-3">附近加盟店</span>
+    </a>
+    <a href="#/nearby_exchanges" ng-click="next()" class="city-4 block">
+        <img class="ui-li" ng-src="img/city-exp.png">
+        <span class="city-3">同城切换购体验</span>
+    </a>
+    <a href="#/nearby_activity" ng-click="next()" class="city-4 block">
+        <img class="ui-li" ng-src="img/city-act.png">
+        <span class="city-3">附近活动</span>
+    </a>
+    <a href="#/nearby_hot_store" ng-click="next()" class="city-4 block">
+        <img class="ui-li-1" ng-src="img/city-store.png">
+        <span class="city-2">同城热门店铺</span>
+    </a>
+</div>

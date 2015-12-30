@@ -1,0 +1,23 @@
+<div class="box box-lg bg-white">
+	<p class="text-grey">手机号：1930494394</p>
+	<p class="text-grey"><span>充值金额：</span><span class="text-red">100元</span></p>
+</div>
+<div class="box box-lg"></div>
+<p class="text-center">付款方式</p>
+<div class="payment-way">
+	<img src="img/alipay.png" alt="">
+	<p class="box-tb text-center text-grey nowrap">如果您有支付宝账号，推荐您使用支付宝付款</p>
+	<label ng-init="payment='alipay" class="box-tb radio-label {{payment == 'alipay'?'active':''}}">
+		<input type="radio" ng-model="payment" class="hide" value="alipay">
+	</label>
+</div>
+<div class="payment-way">
+	<img src="img/online_pay.png" alt="">
+	<p class="box-tb text-center text-grey nowrap">如果您有支付宝账号，推荐您使用支付宝付款</p>
+	<label class="box-tb radio-label {{payment == 'online_pay'?'active':''}}">
+		<input type="radio" ng-model="payment" class="hide" value="online_pay">
+	</label>
+</div>
+<div class="box box-lg">
+	<a ng-href="#/charge_reach" class="btn btn-danger btn-lg text-center block">支付</a>
+</div>

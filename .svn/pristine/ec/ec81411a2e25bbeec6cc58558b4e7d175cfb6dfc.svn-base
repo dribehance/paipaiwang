@@ -1,0 +1,2 @@
+<div ng-include="'partials/lucky_auctions/header.html'"></div>
+<div ng-include="'partials/lucky_auctions/content.html'" class="flexbox flex-item vertical"></div>

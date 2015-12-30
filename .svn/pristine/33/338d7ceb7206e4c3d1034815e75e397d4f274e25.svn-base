@@ -1,0 +1,2 @@
+<div ng-include="'partials/back-header.html'"></div>
+<div ng-include="'partials/charge_reach/content.html'" class="flexbox flex-item vertical"></div>

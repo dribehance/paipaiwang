@@ -1,0 +1,3 @@
+<div ng-include="'partials/auction_order/header.html'"></div>
+<div ng-include="'partials/auction_order/content.html'" class="flex-item scroll"></div>
+<div ng-include="'partials/auction_order/footer.html'"></div>

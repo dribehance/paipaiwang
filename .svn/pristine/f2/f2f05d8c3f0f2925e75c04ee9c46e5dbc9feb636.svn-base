@@ -1,0 +1,83 @@
+paipaiwang.factory("_City",function($rootScope,$window){
+	return {
+		get:function () {
+			return $window.localStorage.getItem("city");
+		},
+		set:function(city) {
+			$rootScope.CITY = city;
+			$window.localStorage.setItem("city",$rootScope.CITY);
+		}
+	}
+});
+paipaiwang.factory("_Geo",function($rootScope,$window,$http){
+	return {
+		getCurrentPosition:function(success,error) {
+			$http.get("remote-data/city.json").success(function(data){
+				success(data);
+			}).error(function(e){
+				error(e);
+				alert("暂时无法定位");
+			});
+		}
+	}
+});
+paipaiwang.factory("_ShoppingCart",["$cookieStore",function(cookies){
+	var cart = {
+		itemsCookie:"",
+		init:function(itemsCookie){
+			this.itemsCookie = itemsCookie;
+			// if cookie not define then put an empty array
+			if ( !cookies.get(this.itemsCookie) instanceof Array ) {
+				cookies.put(this.itemsCookie);
+			}
+		},
+		addItem:function(item,quantity){
+			if (quantity == undefined ) quantity =1;
+			var items = cookies.get(this.itemsCookie);
+			items.push({
+				id:item.id,
+				name:item.name,
+				quantity:quantity,
+				price:item.price
+			});
+			cookies.put(this.itemsCookie,items);
+		},
+		getItemByIndex:function(index){
+			var items = cookies.get(this.itemsCookie);
+
+			return items[index];
+		},
+		updateQuantity:function(index,quantity){
+			var items = cookies.get(this.itemsCookie);
+			items[index].quantity = quantity;
+			cookies.put(this.itemsCookie,items);
+		},
+		removeItem:function(index){
+			var items = cookies.get(this.itemsCookie);
+			items.splice(index,1);
+			cookies.put(this.itemsCookie,items);
+		},
+		totalItems:function(){
+			var quantity = 0,
+				items = cookies.get(this.itemsCookie);
+			for (var i=0;i<items.length;i++) {
+				quantity += items[i].quantity;
+			}
+			return quantity;
+		},
+		price: {
+			total:function() {
+				var total = 0,
+					items = cookies.get(this.itemsCookies);
+				for (var i = 0 ;i < items.length;i++) {
+					total += this.calculate(item[i]);
+				}
+			},
+			calculate:function(item){
+				return item.price * item.quantity
+			}
+
+		}
+	}
+	return cart;
+}]);

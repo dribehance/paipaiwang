@@ -1,0 +1,19 @@
+<div class="box box-lg">
+	<div class="row">
+		<div class="col-xs-6 nowrap text-grey">
+			版本检测
+		</div>
+		<div class="col-xs-6 nowrap x-small text-grey text-right">
+			已经是最新版本
+		</div>
+	</div>
+</div>
+<a ng-href="#/feedback" class="block box box-lg box-shadow text-grey">
+	意见反馈
+</a>
+<a ng-href="#/feedback" class="box box-lg box-shadow text-grey box-mb">
+	给我评价
+</a>
+<p class="box box-lg">
+	<a href="" class="btn btn-danger btn-lg block">退出当前账号</a>
+</p>

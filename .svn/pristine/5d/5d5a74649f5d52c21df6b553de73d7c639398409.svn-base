@@ -1,0 +1,71 @@
+<div class="text-center text-grey box box-lg" ng-show="!loaded">loading</div>
+<div ng-show="loaded">
+    <div class="block box box-mb info-section">
+        <div class="thumbnail">
+            <img class="block" ng-src="{{IMG_PATH + store.cover }}" alt="">
+        </div>
+        <p class="text-light-grey big nowrap">{{ store.name }}</p>
+        <div class="row">
+            <div class="col-xs-6">
+                <p class="text-light-grey nowrap">
+                    <span>{{ store.percapita }}</span>
+                </p>
+            </div>
+            <div class="col-xs-6 nowap text-right">
+                <p class="stars">
+                    <span class="star-icon" ng-repeat="n in getArray(store.star) track by $index"></span>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <p class="text-light-grey nowrap">
+                    <span>{{ store.type }}</span>
+                </p>
+            </div>
+            <div class="col-xs-6 nowap">
+                <p class="text-light-grey text-right">
+                    {{ toInt(store.distance)}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="box-mb bg-white">
+        <a ng-href="" class="block box box-lg detail-bar bg-white big text-light-grey box-shadow">地点：{{ store.street }}<span class="arrow-right"></span></a>
+        <div class="line"></div>
+        <a ng-href="tel:{{store.telephone}}" class="block box box-lg detail-bar bg-white big text-light-grey">电话：{{ store.telephone }}<span class="arrow-right"></span></a>
+        <div class="line"></div>
+    </div>
+    <div class="box-mb bg-white">
+        <a ng-href="#/store_exchange/{{ store.id }}" class="block box box-lg detail-bar bg-white big text-light-grey box-shadow">本店换购体验<span class="arrow-right"></span></a>
+        <div class="line"></div>
+    </div>
+    <div class="box-mb bg-white">
+        <div class="line"></div>
+        <!--<a ng-href="" class="block box box-lg detail-bar bg-white big text-light-grey box-shadow">店铺介绍<span class="arrow-right"></span></a>-->
+        <div class="line"></div>
+        <a ng-href="#/store_gallery/{{ store.id }}" ng-click="next()" class="block box box-lg detail-bar bg-white big text-light-grey">店铺相册<span class="arrow-right"></span></a>
+        <div class="line"></div>
+    </div>
+    <div class="box box-lg">
+        <div class="comment-list row" ng-show="page.list.length > 0">
+            <div class="row text-light-grey">
+                <div class="col-xs-6 nowrap text-left">网友评论</div>
+                <div class="col-xs-6 nowrap text-right"><a href="#/store_comments/{{ comment.franchisee_id }}" ng-click="next()" class="text-light-grey">查看{{ toInt(page.totalPage)*toInt(page.pageSize) }}条评论</a>
+                </div>
+            </div>
+            <div class="comment-item">
+                <h4 class="text-red">{{ comment.user_name }}</h4>
+                <p class="nowrap text-darkgrey">{{ comment.content }}</p>
+
+                <img class="avatar" ng-src="{{ IMG_PATH + comment.avatar}}" alt="">
+                <p class="stars">
+                    <span class="star-icon" ng-repeat="n in getArray(comment.star) track by $index"></span>
+                </p>
+                <div class="date text-grey">{{ comment.post_time }}</div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,2 @@
+<div ng-include="'partials/catalog/header.html'"></div>
+<div ng-include="'partials/catalog/content.html'" class="flexbox flex-item"></div>

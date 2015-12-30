@@ -1,0 +1,18 @@
+<div class="box box-lg">
+	<div class="text-center text-grey box box-lg" ng-class="loading">
+<span class="preloader"></span><span>正在加载</span></div>
+	<div class="row" ng-show="loaded">
+		<div class="col-xs-6 box-mb">
+			<img ng-src="{{ IMG_PATH + pictures.pictures_1}}" class="block" alt="">
+		</div>
+		<div class="col-xs-6 box-mb">
+			<img ng-src="{{ IMG_PATH + pictures.pictures_2}}" class="block" alt="">
+		</div>
+		<div class="col-xs-6 box-mb">
+			<img ng-src="{{ IMG_PATH + pictures.pictures_3}}" class="block" alt="">
+		</div>
+		<div class="col-xs-6 box-mb">
+			<img ng-src="{{ IMG_PATH + pictures.pictures_4}}" class="block" alt="">
+		</div>
+	</div>
+</div>

@@ -1,0 +1,15 @@
+<div class="text-grey">
+    <div class=" box box-lg">
+        <span>当前位置：{{ current }} </span>
+        <span ng-show="!located">定位中</span>
+    </div>
+    <div class="line grey"></div>      
+</div>
+<div class="text-grey text-center box box-lg" ng-show="!loaded">正在加载</div>
+<ul class="ls flex-item scroll" ng-show="loaded">
+    <li ng-repeat="province in provinces">
+        <label class="ng-label box-lr text-left">
+            <input type="radio" class="hide" ng-click="getCity(province)" value="{{province}}">{{province}}</label>
+        <div class="line grey"></div>
+    </li>
+</ul>

@@ -1,0 +1,3 @@
+<div class="banner">
+	<img ng-src="{{ IMG_PATH + product.pictures_1 }}" class="block" alt="">
+</div>

@@ -1,0 +1,31 @@
+<div class="ng-tab">
+    <ul class="ls row">
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderStatus == '' }}">
+                <input type="radio" name="tab-group" ng-model="orderStatus" value="" class="hide">全部</label>
+        </li>
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderStatus == '0' }}">
+                <input type="radio" name="tab-group" ng-model="orderStatus" value="0" class="hide">待付款</label>
+        </li>
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderStatus == '1' }}">
+                <input type="radio" name="tab-group" ng-model="orderStatus" value="1" class="hide">待发货</label>
+        </li>
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderStatus == '2' }}">
+                <input type="radio" name="tab-group" ng-model="orderStatus" value="2" class="hide">待收货</label>
+        </li>
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderStatus == '3' }}">
+                <input type="radio" name="tab-group" ng-model="orderStatus" value="3" class="hide">待评价</label>
+        </li>
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderStatus == '4' }}">
+                <input type="radio" name="tab-group" ng-model="orderStatus" value="4" class="hide">退货中</label>
+        </li>
+    </ul>
+</div>
+<div class="ng-tab-content flex-item scroll">
+    <div ng-include="'partials/orders/order_all.html'"></div>
+</div>

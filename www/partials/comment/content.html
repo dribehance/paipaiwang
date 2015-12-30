@@ -1,0 +1,16 @@
+<div class="box box-lg">
+    <div class="stars text-center">
+        <span class="star-icon"></span>
+        <span class="star-icon"></span>
+        <span class="star-icon"></span>
+        <span class="star-icon"></span>
+        <span class="star-icon"></span>
+    </div>
+</div>
+<div class="box box-lg text-grey" ng-show="warning">需要登录才可以评论！</div>
+<div class="box box-lg">
+    <textarea name="comment" id="comment" class="block" rows="10" placeholder="评论" ng-model="comment.content"></textarea>
+</div>
+<div class="box box-lg">
+    <a ng-click="submit()" class="btn btn-danger">提交</a>
+</div>

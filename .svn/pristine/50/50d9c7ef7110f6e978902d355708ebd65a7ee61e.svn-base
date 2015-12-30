@@ -1,0 +1,26 @@
+<div class="newaddress">
+        <a href="#/nearby_store/餐饮美食" ng-click="next()" class="city-4 block">
+            <img class="ui-li" src="img/near-food.png">
+            <span class="city-5">餐饮美食</span>
+        </a>
+        <a href="#/nearby_store/电影" ng-click="next()" class="city-4 block">
+            <img class="ui-li" src="img/near-movis.png">
+            <span class="city-5">电影</span>
+        </a>
+        <a href="#/nearby_hotel/酒店" ng-click="next()" class="city-4 block">
+            <img class="ui-li" src="img/near-hotel.png">
+            <span class="city-5">酒店</span>
+        </a>
+        <a href="#/nearby_store/休闲娱乐" ng-click="next()" class="city-4 block">
+            <img class="ui-li-1" src="img/near-entertain.png">
+            <span class="city-5">休闲娱乐</span>
+        </a>
+        <a href="#/nearby_store/丽人" ng-click="next()" class="city-4 block">
+            <img class="ui-li-1" src="img/near-beauty.png">
+            <span class="city-5">丽人</span>
+        </a>
+        <a href="#/nearby_store/生活服务" ng-click="next()" class="city-4 block">
+            <img class="ui-li-1" src="img/near-servic.png">
+            <span class="city-5">生活服务</span>
+        </a>
+</div>

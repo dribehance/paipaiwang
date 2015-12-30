@@ -1,0 +1,10 @@
+<div class="payment-tip">
+
+    <p class="text-center text-red large">支付成功</p>
+    <p class="text-center text-red large">充值金额将在3-5分钟到账</p>
+</div>
+<div class="row box">
+    <div class="col-xs-offset-4 col-xs-4">
+        <a href="#/index" class="btn btn-danger block btn-lg">回到首页</a>
+    </div>
+</div>

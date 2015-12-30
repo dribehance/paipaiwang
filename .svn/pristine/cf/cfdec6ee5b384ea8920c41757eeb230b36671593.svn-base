@@ -1,0 +1,14 @@
+<div class="text-grey text-center box box-lg" ng-class="loading">
+<span class="preloader"></span><span>正在加载</span></div>
+<div class="text-grey text-center box box-lg" ng-show="loaded && activities.length < 1"><div class="no-data blink"></div><div>暂无数据</div></div>
+<div class="nearbyact-row" ng-repeat="activity in activities">
+    <a ng-href="javavascript:void(0)">
+        <div>
+            <img alt="" ng-src="{{ IMG_PATH + activity.cover }}">
+        </div>
+        <div class="jieshao">
+            <div class="title-act">{{ activity.title }}</div>
+            <div class="content-act">{{ activity.content }}</div>
+        </div>
+    </a>
+</div>

@@ -1,0 +1,78 @@
+<div class="box-mb box-shadow">
+	<a ng-click="next()" ng-href="#/" class="block box box-lg detail-bar bg-white">
+		<div class="row">
+			<div class="col-xs-6 text-light-grey">
+				收件人：王陈林
+			</div>
+			<div class="col-xs-6 text-light-grey">
+				电话：18273734950
+			</div>
+			<div class="col-xs-12 text-light-grey">
+				收件地址：北京市朝阳区建国路88号
+			</div>
+		</div>
+		<div class="arrow-right"></div>
+	</a>
+	<div class="line grey"></div>
+</div>
+<div class="box-mb box-shadow bg-white">
+	<div class="block box box-lg  info-section">
+        <div class="thumbnail">
+            <img class="block" src="" alt="">
+        </div>
+        <p class="text-light-grey big nowrap">{{ order.title}}2014秋季装文艺清新蝴蝶结宽松中长</p>
+        <p class="ng-price x-small">
+            <span class="box-r">{{ order.price }}$25</span>
+            <span class="chosen">底价</span>
+        </p>
+        <div class="row">
+            <div class="col-xs-6 nowrap">
+                <span class="text-light-grey box-r small">加价幅度</span>
+                <span class="text-red">10</span>
+            </div>
+            <div class="col-xs-6 nowrap text-right">
+                <span class="text-red small">出价</span>
+                <span class="ng-price small box-r">59.8</span>
+            </div>
+        </div>
+    </div>
+    <div class="box-lr"><div class="line"></div></div>
+    <div class="box box-lg text-red small">合计：89</div>
+    <div class="line grey"></div>
+</div>
+<div class="box-mb bg-white box-shadow">
+	<div class="row box box-lg">
+		<div class="col-xs-6 text-light-grey">
+			<span class="btn">出价</span>
+		</div>
+		<div class="col-xs-offset-4 col-xs-2 text-light-grey text-right">
+			<input type="text" ng-model="price" ng-init="price=3" class="form-control text-center">
+		</div>
+	</div>
+	<div class="line grey"></div>
+</div>
+<div class="box-mb bg-white box-shadow">
+	<div class="row box box-lg">
+		<div class="col-xs-6 text-light-grey">
+			<span class="btn">配送方式</span>
+		</div>
+		<div class="col-xs-6 text-light-grey text-right">
+			快递&nbsp;&nbsp;&nbsp;免费
+		</div>
+	</div>
+	<div class="line grey"></div>
+</div>
+<div class="box-mb bg-white box-shadow ">
+	<div class="row box box-lg">
+		<div class="col-xs-6 text-light-grey">
+			<span class="btn">合计</span>
+		</div>
+		<div class="col-xs-6 text-light-grey text-right">
+			{{ price }}
+		</div>
+	</div>
+	<div class="line grey"></div>
+</div>
+<div class="box-mb">
+	<p class="text-center text-light-grey">确认竞拍后将冻结您账户相应拍币</p>
+</div>

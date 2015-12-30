@@ -1,0 +1,9 @@
+<p class="order-tip text-center text-red large">您的订单提交成功！</p>
+<div class="row box">
+	<div class="col-xs-6">
+		<a ng-href="#/index" ng-click="jump()" class="btn btn-danger block btn-lg">回到首页</a>
+	</div>
+	<div class="col-xs-6">
+		<a ng-href="#/auction_orders/555" ng-click="jump()" class="btn btn-danger block btn-lg">查看我的竞拍</a>
+	</div>
+</div>

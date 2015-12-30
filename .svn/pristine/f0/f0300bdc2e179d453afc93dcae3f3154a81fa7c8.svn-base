@@ -1,0 +1,209 @@
+var paipaiwang = angular.module("paipaiwang",[
+		"ngRoute",
+		"ngAnimate"
+	]).config([
+		"$routeProvider",
+		"$httpProvider",
+		function($routeProvider,$httpProvider){
+			$routeProvider.
+			when("/index",{
+				templateUrl: "view/index.html",
+				controller: indexController
+			}).
+			when("/nearby",{
+				templateUrl: "view/nearby.html",
+				controller: nearbyController
+			}).
+			when("/shopping_cart",{
+				templateUrl: "view/shopping_cart.html",
+				controller: shoppingCartController
+			}).
+			when("/user",{
+				templateUrl: "view/user.html",
+				controller: userController
+			}).
+			when("/detail/:articleID",{
+				templateUrl: "view/detail.html",
+				controller: discoveryDetailController
+			}).
+			when("/strategy",{
+				templateUrl: "view/strategy.html",
+				controller: strategyController
+			}).
+			when("/hot",{
+				templateUrl: "view/hot.html",
+				controller: hotController
+			}).
+			when("/catalog",{
+				templateUrl: "view/catalog.html",
+				controller: catalogController
+			}).
+			when("/auctions",{
+				templateUrl: "view/auctions.html",
+				controller: auctionsController
+			}).
+			when("/auctions/:auctionID",{
+				templateUrl: "view/auction.html",
+				controller: auctionController
+			}).
+			when("/auction_orders",{
+				templateUrl: "view/auction_orders.html",
+				controller: auctionOrdersController
+			}).
+			when("/auction_orders/:orderID",{
+				templateUrl: "view/auction_order.html",
+				controller: auctionOrderController
+			}).
+			when("/auction_comfirm/:orderID",{
+				templateUrl: "view/auction_comfirm.html",
+				controller: auctionComfirmController
+			}).
+			when("/auction_track/:orderID",{
+				templateUrl: "view/auction_track.html",
+				controller: auctionTrackController
+			}).
+			when("/auction_place/:orderID",{
+				templateUrl: "view/auction_place.html",
+				controller: auctionPlaceController
+			}).
+			when("/lucky_auctions",{
+				templateUrl: "view/lucky_auctions.html",
+				controller: luckyAuctionsController
+			}).
+			when("/charge",{
+				templateUrl: "view/charge.html",
+				controller: chargeController
+			}).
+			when("/charge_comfirm",{
+				templateUrl: "view/charge_comfirm.html",
+				controller: chargeComfirmController
+			}).
+			when("/charge_reach",{
+				templateUrl: "view/charge_reach.html",
+				controller: chargeReachController
+			}).
+			when("/welfare",{
+				templateUrl: "view/welfare.html",
+				controller: welfareController
+			}).
+			when("/order",{
+				templateUrl: "view/order.html",
+				controller: orderController
+			}).
+			when("/product/:productID",{
+				templateUrl: "view/product.html",
+				controller: productController
+			}).
+			when("/shopping_cart_push",{
+				templateUrl: "view/shopping_cart_push.html",
+				controller: shoppingCartPushController
+			}).
+			when("/payment",{
+				templateUrl: "view/payment.html",
+				controller: paymentController
+			}).
+			when("/catalog",{
+				templateUrl: "view/catalog.html",
+				controller: catalogController
+			}).
+			when("/order_reach",{
+				templateUrl: "view/order_reach.html",
+				controller: orderReachController
+			}).
+			when("/switch_city",{
+				templateUrl: "view/switch_city.html",
+				controller: switchCityController
+			}).
+			when("/nearby_store",{
+				templateUrl: "view/nearby_store.html",
+				controller: nearbyStoreController
+			}).
+			when("/nearby_exchange",{
+				templateUrl: "view/nearby_exchange.html",
+				controller: nearbyExchangeController
+			}).
+			when("/nearby_activity",{
+				templateUrl: "view/nearby_activity.html",
+				controller: nearbyActivityController
+			}).
+			when("/nearby_hot_store",{
+				templateUrl: "view/nearby_hot_store.html",
+				controller: nearbyHotStoreController
+			}).
+			when("/nearby_food",{
+				templateUrl: "view/nearby_food.html",
+				controller: nearbyFoodController
+			}).
+			when("/nearby_film",{
+				templateUrl: "view/nearby_film.html",
+				controller: nearbyFilmController
+			}).
+			when("/nearby_hotel",{
+				templateUrl: "view/nearby_hotel.html",
+				controller: nearbyHotelController
+			}).
+			when("/nearby_entertain",{
+				templateUrl: "view/nearby_entertain.html",
+				controller: nearbyEntertainController
+			}).
+			when("/nearby_liren",{
+				templateUrl: "view/nearby_liren.html",
+				controller: nearbyLirenController
+			}).
+			when("/nearby_service",{
+				templateUrl: "view/nearby_service.html",
+				controller: nearbyServiceController
+			}).
+			when("/stores/:storeID",{
+				templateUrl: "view/store.html",
+				controller: storeController
+			}).
+			when("/store_gallery/:storeID",{
+				templateUrl: "view/store_gallery.html",
+				controller: storeGalleryController
+			}).
+			when("/store_exchange/:storeID",{
+				templateUrl: "view/store_exchange.html",
+				controller: storeExchangeController
+			}).
+			when("/store_exchange_detail/:storeID",{
+				templateUrl: "view/store_exchange_detail.html",
+				controller: storeExchangeDetailController
+			}).
+			when("/store_comments/:storeID",{
+				templateUrl: "view/store_comments.html",
+				controller: storeCommentsController
+			}).
+			when("/comment",{
+				templateUrl: "view/comment.html",
+				controller: commentController
+			}).
+			when("/exchange_place/:storeID",{
+				templateUrl: "view/exchange_place.html",
+				controller: exchangePlaceController
+			}).
+			otherwise({
+				redirectTo: "/index"
+			});
+
+			delete $httpProvider.defaults.headers.common['X-Requested-With'];
+		}
+	]).run(function($rootScope,$window){
+		$rootScope.slide = '';
+		$rootScope.host = "http://114.215.102.155:8080/";
+		$rootScope.back = function() {
+			$rootScope.slide = 'slide-right';
+			$window.history.back();
+		}
+		$rootScope.next = function () {
+			$rootScope.slide = 'slide-left';
+		}
+		$rootScope.backIndex = function () {
+			$rootScope.slide = 'slide-right';
+		}
+		$rootScope.jump = function () {
+			$rootScope.slide = 'fadeIn';
+		}
+		$rootScope.$on('$routeChangeStart',function(){
+		})
+	});

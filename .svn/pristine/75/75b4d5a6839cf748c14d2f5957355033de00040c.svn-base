@@ -1,0 +1,22 @@
+<div class="box box-lg">
+	<div class="row">
+		<div class="col-xs-6 box-mb">
+			<img ng-src="img/p1.jpg" class="block" alt="">
+		</div>
+		<div class="col-xs-6 box-mb">
+			<img ng-src="img/p1.jpg" class="block" alt="">
+		</div>
+		<div class="col-xs-6 box-mb">
+			<img ng-src="img/p1.jpg" class="block" alt="">
+		</div>
+		<div class="col-xs-6 box-mb">
+			<img ng-src="img/p1.jpg" class="block" alt="">
+		</div>
+		<div class="col-xs-6 box-mb">
+			<img ng-src="img/p1.jpg" class="block" alt="">
+		</div>
+		<div class="col-xs-6 box-mb">
+			<img ng-src="img/p1.jpg" class="block" alt="">
+		</div>
+	</div>
+</div>

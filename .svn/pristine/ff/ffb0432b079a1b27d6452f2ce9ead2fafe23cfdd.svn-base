@@ -1,0 +1,24 @@
+<div class="container">
+    <ul class="ls row">
+        <li class="col-xs-6">
+            <div class="figure {{ $index % 2 == 0 ? 'odd':'even' }}">
+                <a href="#/product/{{ product.id }}" ng-click="next()">
+                    <div class="figure-img">
+                        <img src="img/p1.jpg" alt="">
+                    </div>
+                    <div class="figure-caption">
+                        <h4>{{ product.title }}2014秋季装文艺清新蝴蝶结宽松中长</h4>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <span class="ng-price x-small nowrap">{{ "￥" + product.price }}45.8</span>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <span class="ng-buyer x-small nowrap">{{ product.buyer + "人购买"}}38</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>

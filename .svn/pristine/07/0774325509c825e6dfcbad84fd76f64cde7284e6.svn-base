@@ -1,0 +1,20 @@
+<div class="row" ng-repeat="order in product.order.contents">
+	<div class="col-xs-3">
+		<div class="box-tb text-red x-small nowrap">
+			{{ order.username }}
+		</div>
+	</div>
+	<div class="col-xs-6">
+		<div class="box-tb text-center text-grey x-small nowrap">
+			颜色：{{ order.meta_1 }}&nbsp;&nbsp;&nbsp;
+			尺码：{{ order.meta_2 }}&nbsp;&nbsp;&nbsp;
+			数量：{{ order.total }}
+		</div>
+	</div>
+	<div class="col-xs-3">
+		<div class="box-tb text-right text-grey x-small nowrap">
+			{{ order.post_time }}
+		</div>
+	</div>
+	<div class="line col-xs-12"></div>
+</div>

@@ -1,0 +1,334 @@
+var paipaiwang = angular.module("paipaiwang",[
+		"ngRoute",
+		"ngAnimate",
+		"ngSanitize",
+		"ngCookies",
+		"timer"
+	]).config([
+		"$routeProvider",
+		"$httpProvider",
+		function($routeProvider,$httpProvider){
+			$routeProvider.
+			when("/index",{
+				templateUrl: "view/index.html",
+				controller: indexController
+			}).
+			when("/nearby",{
+				templateUrl: "view/nearby.html",
+				controller: nearbyController,
+				resolve: {
+					factory: checkOffline
+				}
+			}).
+			when("/shopping_cart",{
+				templateUrl: "view/shopping_cart.html",
+				controller: shoppingCartController,
+				resolve: {
+					factory: checkAuthen
+				}
+			}).
+			when("/user",{
+				templateUrl: "view/user.html",
+				controller: userController,
+				resolve: {
+					factory: checkAuthen
+				}
+			}).
+			when("/strategy",{
+				templateUrl: "view/strategy.html",
+				controller: strategyController,
+				resolve: {
+					factory: checkOffline
+				}
+			}).
+			when("/hot",{
+				templateUrl: "view/hot.html",
+				controller: hotController,
+				resolve: {
+					factory: checkOffline
+				}
+			}).
+			when("/auctions",{
+				templateUrl: "view/auctions.html",
+				controller: auctionsController,
+				resolve: {
+					factory: checkOffline
+				}
+			}).
+			when("/auction/:auctionID",{
+				templateUrl: "view/auction.html",
+				controller: auctionController
+			}).
+			when("/auction_orders",{
+				templateUrl: "view/auction_orders.html",
+				controller: auctionOrdersController,
+				resolve: {
+					factory: checkAuthen
+				}
+			}).
+			when("/auction_orders/:orderID",{
+				templateUrl: "view/auction_order.html",
+				controller: auctionOrderController
+			}).
+			when("/auction_comfirm/:orderID",{
+				templateUrl: "view/auction_comfirm.html",
+				controller: auctionComfirmController
+			}).
+			when("/auction_track/:orderID",{
+				templateUrl: "view/auction_track.html",
+				controller: auctionTrackController
+			}).
+			when("/auction_place/:auctionID",{
+				templateUrl: "view/auction_place.html",
+				controller: auctionPlaceController
+			}).
+			when("/lucky_auction",{
+				templateUrl: "view/lucky_auction.html",
+				controller: luckyAuctionController
+			}).
+			when("/lucky_auctions",{
+				templateUrl: "view/lucky_auctions.html",
+				controller: luckyAuctionsController,
+				resolve: {
+					factory: checkOffline
+				}
+			}).
+			when("/lucky_auction_place/:auctionID",{
+				templateUrl: "view/lucky_auction_place.html",
+				controller: luckyAuctionPlaceController
+			}).
+			when("/charge",{
+				templateUrl: "view/charge.html",
+				controller: chargeController,
+				resolve: {
+					factory: checkOffline
+				}
+			}).
+			when("/charge_comfirm",{
+				templateUrl: "view/charge_comfirm.html",
+				controller: chargeComfirmController
+			}).
+			when("/charge_reach",{
+				templateUrl: "view/charge_reach.html",
+				controller: chargeReachController
+			}).
+			when("/welfare",{
+				templateUrl: "view/welfare.html",
+				controller: welfareController
+			}).
+			when("/orders",{
+				templateUrl: "view/orders.html",
+				controller: ordersController,
+				resolve: {
+					factory: checkAuthen
+				}
+			}).
+			when("/orders/:orderID",{
+				templateUrl: "view/order.html",
+				controller: orderController
+			}).
+			when("/order_return",{
+				templateUrl: "view/order_return.html",
+				controller: orderReturnController
+			}).
+			when("/order_track/:orderID",{
+				templateUrl: "view/order_track.html",
+				controller: orderTrackController
+			}).
+			when("/order_state",{
+				templateUrl: "view/order_state.html",
+				controller: orderStateController
+			}).
+			when("/order_comfirm",{
+				templateUrl: "view/order_comfirm.html",
+				controller: orderComfirmController
+			}).
+			when("/order_exchange",{
+				templateUrl: "view/order_exchange.html",
+				controller: orderExchangeController
+			}).
+			when("/product/:productID",{
+				templateUrl: "view/product.html",
+				controller: productController
+			}).
+			when("/payment",{
+				templateUrl: "view/payment.html",
+				controller: paymentController
+			}).
+			when("/catalogs",{
+				templateUrl: "view/catalogs.html",
+				controller: catalogsController,
+				resolve: {
+					factory: checkOffline
+				}
+			}).
+			when("/catalog/:catalogID/:catalogName",{
+				templateUrl: "view/catalog.html",
+				controller: catalogController
+			}).
+			when("/provinces",{
+				templateUrl: "view/provinces.html",
+				controller: provincesController
+			}).
+			when("/cities/:province",{
+				templateUrl: "view/cities.html",
+				controller: citiesController
+			}).
+			when("/nearby_stores",{
+				templateUrl: "view/nearby_stores.html",
+				controller: nearbyStoresController
+			}).
+			when("/nearby_store/:catalogName",{
+				templateUrl: "view/nearby_store.html",
+				controller: nearbyStoreController
+			}).
+			/*when("/nearby_exchange",{
+				templateUrl: "view/nearby_exchange.html",
+				controller: nearbyExchangeController
+			}).*/
+			when("/nearby_exchanges",{
+				templateUrl:"view/nearby_exchanges.html",
+				controller: nearbyExchangesController
+			}).
+			when("/nearby_activity",{
+				templateUrl: "view/nearby_activity.html",
+				controller: nearbyActivityController
+			}).
+			when("/nearby_hot_store",{
+				templateUrl: "view/nearby_hot_store.html",
+				controller: nearbyHotStoreController
+			}).
+			when("/store/:storeID",{
+				templateUrl: "view/store.html",
+				controller: storeController
+			}).
+			when("/store_gallery/:storeID",{
+				templateUrl: "view/store_gallery.html",
+				controller: storeGalleryController
+			}).
+			when("/store_exchanges/:storeID",{
+				templateUrl: "view/store_exchanges.html",
+				controller: storeExchangesController
+			}).
+			when("/store_exchange_detail/:storeID",{
+				templateUrl: "view/store_exchange_detail.html",
+				controller: storeExchangeDetailController
+			}).
+			when("/store_exchange/:targetID/:storeID",{
+				templateUrl: "view/store_exchange.html",
+				controller: storeExchangeInfoController
+			}).
+			when("/store_comments/:storeID",{
+				templateUrl: "view/store_comments.html",
+				controller: storeCommentsController
+			}).
+			when("/comment/:targetID",{
+				templateUrl: "view/comment.html",
+				controller: commentController
+			}).
+			when("/exchange_place/:exchangeID",{
+				templateUrl: "view/exchange_place.html",
+				controller: exchangePlaceController
+			}).
+			when("/personal_info",{
+				templateUrl: "view/personal_info.html",
+				controller: personalInfoController
+			}).
+			when("/modify_password",{
+				templateUrl: "view/modify_password.html",
+				controller: modifyPasswordController
+			}).
+			when("/more",{
+				templateUrl: "view/more.html",
+				controller: moreController,
+				resolve: {
+					factory: checkAuthen
+				}
+			}).
+			when("/favour",{
+				templateUrl: "view/favour.html",
+				controller: favourController
+			}).
+			when("/record",{
+				templateUrl: "view/record.html",
+				controller: recordController
+			}).
+			when("/message",{
+				templateUrl: "view/message.html",
+				controller: messageController
+			}).
+			when("/addresses",{
+				templateUrl: "view/addresses.html",
+				controller: addressesController
+			}).
+			when("/addresses/:addressID",{
+				templateUrl: "view/address.html",
+				controller: addressController
+			}).
+			when("/address_new",{
+				templateUrl: "view/address_new.html",
+				controller: addressNewController
+			}).
+			when("/feedback",{
+				templateUrl: "view/feedback.html",
+				controller: feedbackController
+			}).
+			when("/sign_in",{
+				templateUrl:"view/sign_in.html",
+				controller:signInController
+			}).
+			when("/sign_up",{
+				templateUrl:"view/sign_up.html",
+				controller:signUpController
+			}).
+			when("/forget",{
+				templateUrl:"view/forget.html",
+				controller:forgetController
+			}).
+			otherwise({
+				redirectTo: "/index"
+			});
+
+			delete $httpProvider.defaults.headers.common['X-Requested-With'];
+		}
+	]).run(function($rootScope,$window,$sce,_Geo,_User,_CityCookie,_EventHandler){
+		$rootScope.slide = 'fadeIn';
+		// $rootScope.host = "http://114.215.102.155:8080/";
+		$rootScope.host = "http://218.85.137.242:8080/";
+		$rootScope.IMG_PATH=$rootScope.host+"upload/picture/";
+		$rootScope.PERSON_IMG_PATH=$rootScope.host+"upload/person/";
+
+		$rootScope.back = function() {
+			$rootScope.slide = 'slide-right';
+			$window.history.back();
+		}
+		$rootScope.next = function () {
+			if ( $rootScope.offline ) {
+				return;
+			}
+			$rootScope.slide = 'slide-left';
+		}
+		$rootScope.backIndex = function () {
+			if ( $rootScope.offline ) {
+				return;
+			}
+			$rootScope.slide = 'slide-right';
+		}
+		$rootScope.jump = function () {
+			if ( $rootScope.offline ) {
+				return;
+			}
+			$rootScope.slide = 'fadeIn';
+		}
+		$rootScope.trustAsHtml = function (safehtml) {
+			return $sce.trustAsHtml(safehtml)
+		}
+		$rootScope.toInt = function(intstring) {
+			return parseInt(intstring);
+		}
+
+		_Geo.getDefaultPosition();
+		_EventHandler.onBackKeyDown();
+		_EventHandler.onOffline();
+		_EventHandler.online();
+	});

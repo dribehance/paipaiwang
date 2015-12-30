@@ -1,0 +1,40 @@
+<div class="text-center text-grey box box-lg" ng-show="!loaded">正在加载</div>
+<div class="text-center text-grey box box-lg" ng-show="loaded && auctionOrders.length == 0">暂无数据</div>
+<div ng-repeat="auction in auctionOrders" ng-show="loaded && auctionOrders.length > 0" class="box-mb box-shadow">
+    <div class="block box bg-white info-section">
+        <div class="thumbnail">
+            <img class="block" src="" alt="">
+        </div>
+        <p class="text-light-grey big nowrap">{{ auction.title}}</p>
+        <p class="ng-price x-small">
+            <span class="box-r">{{ auction.price }}</span>
+            <span class="chosen">底价</span>
+        </p>
+        <div class="row">
+            <div class="col-xs-6">
+                <span class="text-light-grey box-r small">加价幅度</span>
+                <span class="text-red">{{ auction.increase_price }}</span>
+            </div>
+            <div class="col-xs-6 text-right">
+                <span class="text-red small">出价</span>
+                <span class="ng-price small box-r">{{ auction.price }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="box-lr">
+    	<div class="line"></div>
+    </div>
+    
+    <div class="box bg-white text-green row">
+    	<div class="col-xs-6">
+    		<span class="btn x-small text-green">{{ getStatus( auction.status )}}</span>
+    	</div>
+    	<div class="col-xs-3">
+    		<a href="#/auction/traffic" ng-show=" auction.status == 2" class="btn btn-default block">查看物流</a>
+    	</div>
+    	<div class="col-xs-3">
+    		<a href="#/auction_comfirm/:auctionID" ng-show=" auction.status == 2 " class="btn btn-default block">确认收货</a>
+    	</div>
+    </div>
+    <div class="line grey"></div>
+</div>

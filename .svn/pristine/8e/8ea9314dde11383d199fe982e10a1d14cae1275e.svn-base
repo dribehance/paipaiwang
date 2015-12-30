@@ -1,0 +1,13 @@
+<div class="catalog-content">
+	<h4 class="text-darkgrey big">{{ catalogName }}</h4>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-md-4 fadeIn" ng-repeat="cloth in clothes">
+				<a ng-click="next()" ng-href="{{ cloth.link }}" class="block border-box catalog-clothes box text-center">
+					<img ng-src="{{ cloth.img }}" alt="" class="block">
+					<span class="block text-light-grey x-small nowrap">{{ cloth.name }}</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

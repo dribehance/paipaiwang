@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="text-center text-grey box box-lg" ng-show=" !loaded ">正在加载</div>
+    <ul class="ls row" ng-show="loaded" ng-class="fadeIn">
+        <li class="col-xs-6" ng-repeat="product in products.list">
+            <div class="figure {{ $index % 2 == 0 ? 'odd':'even' }}">
+                <a ng-href="#/product/{{product.id}}" ng-click="next()">
+                    <div class="figure-img">
+                        <img ng-src="{{ IMG_PATH + product.cover }}" alt="">
+                    </div>
+                    <div class="figure-caption">
+                        <h4>{{ product.title }}</h4>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <span class="ng-price x-small nowrap">{{ "￥" + product.price }}</span>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <span class="ng-buyer x-small nowrap">{{ product.sales_volume + "人购买"}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>

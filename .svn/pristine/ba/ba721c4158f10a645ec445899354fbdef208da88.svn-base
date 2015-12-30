@@ -1,0 +1,60 @@
+<div class="user-meta box">
+    <div class="avatar">
+        <!--{{ IMG_PATH + userProfile.cover }}-->
+        <img ng-src="http://218.85.137.242:8080/upload/avatar.png" alt="">
+    </div>
+    <p class="big nowrap">{{ userProfile.user_name }}</p>
+    <div class="x-small nowrap">
+        拍币金额：{{ userProfile.pay_points }}
+    </div>
+    <div class="x-small nowrap box-mb">
+        拍卡号：{{ userProfile.mobile_phone }}
+    </div>
+</div>
+<div class="row bg-white">
+    <div class="col-xs-3">
+        <a href="#/orders" class="block box" ng-click="next()">
+            <img src="img/order_all.png" class="block m96" alt="">
+        </a>
+    </div>
+    <div class="col-xs-3">
+        <a href="#/auction_orders" class="block box" ng-click="next()">
+            <img src="img/auction_card.png" class="block m96" alt="">
+        </a>
+    </div>
+    <div class="col-xs-3">
+        <a href="#/favour" class="block box" ng-click="next()">
+            <img src="img/favour.png" class="block m96" alt="">
+        </a>
+    </div>
+    <div class="col-xs-3">
+        <a href="#/record" class="block box" ng-click="next()">
+            <img src="img/record.png" class="block m96" alt="">
+        </a>
+    </div>
+</div>
+<div class="line box-mb"></div>
+<div class="scroll flex-item">
+    <a ng-href="#/personal_info" ng-click="next()" class="block text-light-grey bg-white detail-bar box ">
+        <img src="img/user_icon.png" class="vertical" alt="">
+        <span class="box-lr">个人资料</span>
+        <span class="arrow-right"></span>
+    </a>
+    <a ng-href="#/modify_password" ng-click="next()" class="block text-light-grey bg-white detail-bar box  box-shadow">
+        <img src="img/pencil_icon.png" class="vertical" alt="">
+        <span class="box-lr">修改密码</span>
+        <span class="arrow-right"></span>
+    </a>
+    <a ng-href="#/addresses" ng-click="next()" class="block text-light-grey bg-white detail-bar box  box-shadow">
+        <img src="img/location_icon.png" class="vertical" alt="">
+        <span class="box-lr">收货地址</span>
+        <span class="arrow-right"></span>
+    </a>
+    <div class="line box-mb"></div>
+    <a ng-href="#/more" ng-click="next()" class="block text-light-grey bg-white detail-bar box box-shadow ">
+        <img src="img/more_icon.png" class="vertical" alt="">
+        <span class="box-lr">更多</span>
+        <span class="arrow-right"></span>
+    </a>
+    <div class="line"></div>
+</div>

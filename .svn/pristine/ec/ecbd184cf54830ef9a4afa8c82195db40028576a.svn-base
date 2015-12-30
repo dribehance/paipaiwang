@@ -1,0 +1,5 @@
+<div class="header flexbox">
+    <a class="block ng-back"></a>
+    <div class="flex-item text-center big ng-title">{{ pageName }}</div>
+    <a ng-href="#/message" ng-click="next()" class="cog"><img src="img/message.png" class="vertical" alt=""></a>
+</div>

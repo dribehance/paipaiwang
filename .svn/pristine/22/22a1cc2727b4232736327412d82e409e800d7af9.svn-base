@@ -1,0 +1,10 @@
+<input type="text" class="block box box-lg text-grey pretty-input" placeholder="收货人姓名">
+<input type="text" class="block box box-lg text-grey pretty-input box-shadow" placeholder="手机号码">
+<input type="text" class="block box box-lg text-grey pretty-input box-shadow" placeholder="邮政编码">
+<div class="detail-bar box box-lg box-shadow">
+	<div class="text-light-grey">省市区</div>
+	<span class="arrow-right"></span>
+</div>
+<div class="box box-lg">
+	<textarea name="" id="" class="block box box-lg text-grey" rows="10" placeholder="详细地址"></textarea>
+</div>

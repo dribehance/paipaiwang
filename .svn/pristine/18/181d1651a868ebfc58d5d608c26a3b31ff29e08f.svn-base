@@ -1,0 +1,5 @@
+<div class="header flexbox">
+    <a ng-href="#/index" class="block ng-back" ng-click="jump()"><span class="back-icon"></span></a>
+    <div class="flex-item text-center big ng-title">{{ pageName }}</div>
+    <a ng-href="#/sign_up" ng-click="next()" class="cog">注册</a>
+</div>

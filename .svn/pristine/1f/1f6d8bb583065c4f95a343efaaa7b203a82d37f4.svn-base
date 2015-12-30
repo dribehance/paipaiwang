@@ -1,0 +1,10 @@
+<div class="box box-lg">
+	<div class="text-red xs-small" ng-show="error.status">{{ error.message }}</div>
+	<input type="tel" class="block box box-lg text-grey pretty-input" ng-model="signProfile.telephone" placeholder="手机号">
+	<div class="line"></div>
+	<input type="password" class="block box box-lg text-grey pretty-input" ng-model="signProfile.password" placeholder="密码">
+	<div class="box"></div>
+	<a ng-click="signIn()" ng-show="!loaded" class="btn btn-danger btn-lg block text-center">登录</a>
+	<a ng-show="loaded" class="btn btn-danger btn-lg block text-center">正在登录</a>
+	<a ng-href="#/forget" ng-click="next()" class="text-red">忘记密码</a>
+</div>

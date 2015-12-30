@@ -1,0 +1,2 @@
+<div ng-include="'partials/back-header.html'"></div>
+<div ng-include="'partials/auction_track/content.html'" class="flexbox flex-item vertical scroll"></div>

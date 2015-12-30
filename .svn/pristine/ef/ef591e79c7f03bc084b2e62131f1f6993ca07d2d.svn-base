@@ -1,0 +1,12 @@
+<div class="text-grey text-center box box-lg" ng-show="!loaded">正在加载</div>
+<div class="nearbyact-row" ng-repeat="activity in activities">
+    <a href="">
+        <div>
+            <img alt="" ng-src="{{ IMG_PATH + activity.cover }}">
+        </div>
+        <div class="jieshao">
+            <div class="title-act">{{ activity.title }}</div>
+            <div class="content-act">{{ activity.content }}</div>
+        </div>
+    </a>
+</div>

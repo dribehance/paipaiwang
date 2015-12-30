@@ -1,0 +1,19 @@
+<div class="box box-lg">
+    <div class="text-center text-grey box box-lg" ng-show="!loaded">正在加载</div>
+    <div class="comment-list row" ng-show="loaded">
+        <div class="row text-light-grey">
+            <div class="col-xs-6 nowrap text-left">网友评论</div>
+        </div>
+        <div class="comment-item" ng-repeat="comment in comments">
+            <h4 class="text-red">{{ comment.user_name }}</h4>
+            <p class="nowrap text-darkgrey">{{ comment.content }}</p>
+
+            <img class="avatar" ng-src="comment.avatar" alt="">
+            <div class="stars">
+                <span class="star-icon" ng-repeat="n in getArray(comment.star) track by $index"></span>
+            </div>
+            <div class="date text-grey">{{ comment.post_time }}</div>
+            <div class="line"></div>
+        </div>
+    </div>
+</div>

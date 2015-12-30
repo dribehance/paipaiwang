@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/angular-animate.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text.css" href="css/tongcheng.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.theme.css">
+    <script type="text/javascript" src="js/modernize.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <!--<script type="text/javascript" src="js/jquery.mobile-1.4.4.min.js"></script>-->
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/angular-touch.js"></script>
+    <script type="text/javascript" src="js/angular-route.js"></script>
+    <script type="text/javascript" src="js/angular-cookies.js"></script>
+    <script type="text/javascript" src="js/angular-animate.js"></script>
+    <script type="text/javascript" src="js/angular-sanitize.js"></script>
+    <script type="text/javascript" src="js/angular-timer.js"></script>
+    <script type="text/javascript" src="js/angular-carousel.js"></script>
+    <script type="text/javascript" src="js/paipaiwang.js"></script>
+    <script type="text/javascript" src="js/paipaiwang-service.js"></script>
+    <script type="text/javascript" src="js/paipaiwang-controller.js"></script>
+    <title>拍拍旺paipai.com-上拍拍旺，就购了</title>
+
+</head>
+
+<body>
+
+    <div class="top-page">
+        <div ng-view ng-class="slide" class="page flexbox vertical"></div>
+    </div>
+    <!-- index cache -->
+    <div id="index-cache" class="hide">
+        <div class="header flexbox">
+            <div class="logo text-center flexbox vertical">
+                <div class="logo-cn large">拍米</div>
+                <div class="logo-en">paimeet</div>
+            </div>
+        </div>
+        <div class="flex-item scroll">
+            <div class="banner default-image">
+                <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: 5000, stopOnHover: true,  
+        slideSpeed : 300, paginationSpeed : 400, singleItem : true}">
+                    <div>
+                        <a ng-href="#/product/{{banners.cover_1_p }}" ng-click="next()" class="block">
+                            <img class="block" ng-src="{{ bannerHost + banners.cover_1 }}" />
+                        </a>
+                    </div>
+                    <div>
+                        <a ng-href="#/product/{{banners.cover_2_p }}" ng-click="next()" class="block">
+                            <img class="block" ng-src="{{ bannerHost + banners.cover_2 }}" />
+                        </a>
+                    </div>
+                    <div>
+                        <a ng-href="#/product/{{banners.cover_3_p }}" ng-click="next()" class="block">
+                            <img class="block" ng-src="{{ bannerHost + banners.cover_3 }}" />
+                        </a>
+                    </div>
+                    <div>
+                        <a ng-href="#/product/{{banners.cover_4_p }}" ng-click="next()" class="block">
+                            <img class="block" ng-src="{{ bannerHost + banners.cover_4 }}" />
+                        </a>
+                    </div>
+                    <div>
+                        <a ng-href="#/product/{{banners.cover_5_p }}" ng-click="next()" class="block">
+                            <img class="block" ng-src="{{ bannerHost + banners.cover_5 }}" />
+                        </a>
+                    </div>
+                    <div>
+                        <a ng-href="#/product/{{banners.cover_6_p }}" ng-click="next()" class="block">
+                            <img class="block" ng-src="{{ bannerHost + banners.cover_6 }}" />
+                        </a>
+                    </div>
+                    <div>
+                        <a ng-href="#/product/{{banners.cover_7_p }}" ng-click="next()" class="block">
+                            <img class="block" ng-src="{{ bannerHost + banners.cover_7 }}" />
+                        </a>
+                    </div>
+                </wrap-owlcarousel>
+            </div>
+
+            <div class="container">
+                <ul class="ls row box">
+                    <li class="col-xs-3">
+                        <a ng-click="next()" href="#/strategy" class="block text-center index-icon">
+                            <img ng-src="img/book.png" alt="" class="block">
+                            <em class="block text-center x-small nowrap">拍币攻略</em>
+                        </a>
+                    </li>
+                    <li class="col-xs-3">
+                        <a ng-click="next()" href="#/hot" class="block text-center index-icon">
+                            <img ng-src="img/hot.png" alt="" class="block">
+                            <em class="block text-center x-small nowrap">热卖商品</em>
+                        </a>
+                    </li>
+                    <li class="col-xs-3">
+                        <a ng-click="next()" href="#/catalogs" class="block text-center index-icon">
+                            <img ng-src="img/grid.png" alt="" class="block">
+                            <em class="block text-center x-small nowrap">分类换购</em>
+                        </a>
+                    </li>
+                    <li class="col-xs-3">
+                        <a ng-click="next()" href="#/auctions" class="block text-center index-icon">
+                            <img ng-src="img/hammer.png" alt="" class="block">
+                            <em class="block text-center x-small nowrap">竞拍</em>
+                        </a>
+                    </li>
+                    <li class="clearfix box"></li>
+                    <li class="col-xs-3">
+                        <a ng-click="next()" href="#lucky_auctions" class="block text-center index-icon">
+                            <img ng-src="img/clover.png" alt="" class="block">
+                            <em class="block text-center x-small nowrap">幸运拍</em>
+                        </a>
+                    </li>
+                    <li class="col-xs-3">
+                        <a ng-click="next()" href="#/charge" class="block text-center index-icon">
+                            <img ng-src="img/phone.png" alt="" class="block">
+                            <em class="block text-center x-small nowrap">话费充值</em>
+                        </a>
+                    </li>
+                    <li class="col-xs-3">
+                        <a ng-click="next()" href="#/index" class="block text-center index-icon">
+                            <img ng-src="img/heart.png" alt="" class="block">
+                            <em class="block text-center x-small nowrap">拍米公益</em>
+                        </a>
+                    </li>
+                    <li class="col-xs-3">
+                        <a ng-click="next()" href="#/orders" class="block text-center index-icon">
+                            <img ng-src="img/order.png" alt="" class="block">
+                            <em class="block text-center x-small nowrap">全部订单</em>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="box-mb box-mt">
+                <a ng-href="#/product/{{banners.pinpai}}" class="block">
+                    <img ng-src="img/brand_street.png" alt="" class="block">
+                </a>
+            </div>
+
+        </div>
+        <div class="footer flexbox">
+            <div class="flex-item">
+                <a href="#/index" ng-click="jump()" class="footer-nav footer-icon home-page {{'active-'+ (active=='index')}}">
+                    <img ng-src="img/home_{{ active=='index' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">首页</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/nearby" ng-click="jump()" class="footer-nav footer-icon nearby-page {{'active-'+ (active=='nearby')}}">
+                    <img ng-src="img/nearby_{{ active=='nearby' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">同城</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/shopping_cart" ng-click="jump()" class="footer-nav footer-icon shopping-cart-page {{'active-'+ (active=='shopping_cart')}}">
+                    <img ng-src="img/shopping_cart_{{ active=='shopping_cart' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">购物车</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/user" ng-click="jump()" class="footer-nav footer-icon user-page {{'active-'+ (active=='user')}}">
+                    <img ng-src="img/user_{{ active=='user' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">我</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- nearby cache -->
+    <div id="nearby-cache" class="hide">
+        <div class="header flexbox">
+            <a href="#/provinces" ng-click="next()" class="cog">{{ city ? city.split("市")[0]:'深圳' }}[切换]</a>
+            <div class="flex-item text-center big ng-title">{{ pageName }}</div>
+            <div class="cog"></div>
+        </div>
+        <div class="flex-item scroll">
+            <div class="newaddress">
+                <a href="#/nearby_stores" ng-click="next()" class="city-4 block">
+                    <img class="ui-li" ng-src="img/city-home.png">
+                    <span class="city-3">附近加盟店</span>
+                </a>
+                <a href="#/nearby_exchanges" ng-click="next()" class="city-4 block">
+                    <img class="ui-li" ng-src="img/city-exp.png">
+                    <span class="city-3">同城切换购体验</span>
+                </a>
+                <a href="#/nearby_activity" ng-click="next()" class="city-4 block">
+                    <img class="ui-li" ng-src="img/city-act.png">
+                    <span class="city-3">附近活动</span>
+                </a>
+                <a href="#/nearby_hot_store" ng-click="next()" class="city-4 block">
+                    <img class="ui-li-1" ng-src="img/city-store.png">
+                    <span class="city-2">同城热门店铺</span>
+                </a>
+            </div>
+
+        </div>
+        <div class="footer flexbox">
+            <div class="flex-item">
+                <a href="#/index" ng-click="jump()" class="footer-nav footer-icon home-page {{'active-'+ (active=='index')}}">
+                    <img ng-src="img/home_{{ active=='index' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">首页</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/nearby" ng-click="jump()" class="footer-nav footer-icon nearby-page {{'active-'+ (active=='nearby')}}">
+                    <img ng-src="img/nearby_{{ active=='nearby' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">同城</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/shopping_cart" ng-click="jump()" class="footer-nav footer-icon shopping-cart-page {{'active-'+ (active=='shopping_cart')}}">
+                    <img ng-src="img/shopping_cart_{{ active=='shopping_cart' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">购物车</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/user" ng-click="jump()" class="footer-nav footer-icon user-page {{'active-'+ (active=='user')}}">
+                    <img ng-src="img/user_{{ active=='user' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">我</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- shoppingcart cache -->
+    <div id="shoppingcart-cache" class="hide">
+        <div class="header flexbox">
+            <a class="block ng-back"></a>
+            <div class="flex-item text-center big ng-title">{{ pageName }}</div>
+            <label class="cog" ng-click="toggleAction()">{{ actionMenu }}</label>
+        </div>
+        <div class="flex-item flexbox">
+            <div class="shopping-items flex-item scroll">
+                <div class="text-grey box box-lg text-center" ng-class="loading">
+<span class="preloader"></span><span>正在加载</span></div>
+                <div class="text-grey box box-lg text-center" ng-show=" loaded && items.length < 1">购物车为空</div>
+                <div class="box-mb shopping-item bg-white" ng-repeat="item in items" ng-show="items.length > 0">
+                    <div class="block box info-section">
+                        <div class="thumbnail">
+                            <img class="block" ng-src="{{ IMG_PATH + item.cover }}" alt="">
+                        </div>
+                        <p class="text-light-grey big nowrap">{{ item.title }}</p>
+                        <p class="ng-price x-small">{{ item.orderPrice }}</p>
+                        <div class="text-grey nowrap">
+                            <span class="chosen">已选</span>
+                            <!--<span>颜色：</span>
+                <span class="text-red">{{ item.color }}</span>&nbsp;&nbsp;&nbsp;
+                <span>尺码：</span>
+                <span class="text-red">{{ item.size }}</span>&nbsp;&nbsp;&nbsp;-->
+                            <span>数量：</span>
+                            <span class="text-red">{{ item.total }}</span>
+                        </div>
+
+                    </div>
+                    <div class="box-mt box box-lr">
+                        <div class="line light-grey"></div>
+                    </div>
+                    <div class="clearfix box">
+                        <div class="col-xs-12 text-red text-right nowrap">合计：
+                            <span class="text-red">{{ item.orderPrice * item.total }}</span>
+                        </div>
+                    </div>
+                    <label class="radio-label {{ item.clearing == true ? 'active':'' }}">
+                        <input type="checkbox" ng-model="item.clearing" class="hide" value="all">
+                    </label>
+                    <div class="line grey"></div>
+                </div>
+            </div>
+            <!-- footer -->
+            <div class="shopping-action box bg-white" ng-show="items.length > 0">
+                <div class="row">
+                    <div class="col-xs-9 vertical">
+                        <label class="radio-label vertical {{ total == true ? 'active':'' }}" ng-click="all()"></label>
+                        <span class="text-red vertical">总计：{{ sum() }}</span>
+                    </div>
+                    <div class="col-xs-3">
+                        <a class="btn btn-danger block" ng-click="buy()" ng-show="actionMenu=='编辑'">结算</a>
+                        <a class="btn btn-danger block" ng-click="removeItem()" ng-show="actionMenu=='完成'">删除</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer flexbox">
+            <div class="flex-item">
+                <a href="#/index" ng-click="jump()" class="footer-nav footer-icon home-page {{'active-'+ (active=='index')}}">
+                    <img ng-src="img/home_{{ active=='index' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">首页</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/nearby" ng-click="jump()" class="footer-nav footer-icon nearby-page {{'active-'+ (active=='nearby')}}">
+                    <img ng-src="img/nearby_{{ active=='nearby' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">同城</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/shopping_cart" ng-click="jump()" class="footer-nav footer-icon shopping-cart-page {{'active-'+ (active=='shopping_cart')}}">
+                    <img ng-src="img/shopping_cart_{{ active=='shopping_cart' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">购物车</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/user" ng-click="jump()" class="footer-nav footer-icon user-page {{'active-'+ (active=='user')}}">
+                    <img ng-src="img/user_{{ active=='user' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">我</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div id="user-cache" class="hide">
+        <div class="header flexbox">
+            <a class="block ng-back"></a>
+            <div class="flex-item text-center big ng-title">{{ pageName }}</div>
+            <a ng-href="#/message" ng-click="next()" class="cog"><img src="img/message.png" class="vertical" alt="">
+            </a>
+        </div>
+        <div class="flex-item scroll">
+            <div class="user-meta box">
+                <div class="avatar">
+                    <!--{{ IMG_PATH + userProfile.cover }}-->
+                    <img ng-src="http://218.85.137.242:8080/upload/avatar.png" alt="">
+                </div>
+                <p class="big nowrap">{{ userProfile.user_name }}</p>
+                <div class="x-small nowrap">
+                    拍币金额：{{ userProfile.pay_points }}
+                </div>
+                <div class="x-small nowrap box-mb">
+                    手机号：{{ userProfile.mobile_phone }}
+                </div>
+            </div>
+            <div class="row bg-white">
+                <div class="col-xs-3">
+                    <a href="#/orders" class="block box" ng-click="next()">
+                        <img src="img/order_all.png" class="block m96" alt="">
+                    </a>
+                </div>
+                <div class="col-xs-3">
+                    <a href="#/user" class="block box" ng-click="next()">
+                        <img src="img/auction_card.png" class="block m96" alt="">
+                    </a>
+                </div>
+                <div class="col-xs-3">
+                    <a href="#/favour" class="block box" ng-click="next()">
+                        <img src="img/favour.png" class="block m96" alt="">
+                    </a>
+                </div>
+                <div class="col-xs-3">
+                    <a href="#/record" class="block box" ng-click="next()">
+                        <img src="img/record.png" class="block m96" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="line box-mb"></div>
+            <div class="scroll flex-item">
+                <a ng-href="#/personal_info" ng-click="next()" class="block text-light-grey bg-white detail-bar box ">
+                    <img src="img/user_icon.png" class="vertical" alt="">
+                    <span class="box-lr">个人资料</span>
+                    <span class="arrow-right"></span>
+                </a>
+                <a ng-href="#/modify_password" ng-click="next()" class="block text-light-grey bg-white detail-bar box  box-shadow">
+                    <img src="img/pencil_icon.png" class="vertical" alt="">
+                    <span class="box-lr">修改密码</span>
+                    <span class="arrow-right"></span>
+                </a>
+                <a ng-href="#/addresses" ng-click="next()" class="block text-light-grey bg-white detail-bar box  box-shadow">
+                    <img src="img/location_icon.png" class="vertical" alt="">
+                    <span class="box-lr">收货地址</span>
+                    <span class="arrow-right"></span>
+                </a>
+                <div class="line box-mb"></div>
+                <a ng-href="#/more" ng-click="next()" class="block text-light-grey bg-white detail-bar box box-shadow ">
+                    <img src="img/more_icon.png" class="vertical" alt="">
+                    <span class="box-lr">更多</span>
+                    <span class="arrow-right"></span>
+                </a>
+                <div class="line"></div>
+            </div>
+
+        </div>
+        <div class="footer flexbox">
+            <div class="flex-item">
+                <a href="#/index" ng-click="jump()" class="footer-nav footer-icon home-page {{'active-'+ (active=='index')}}">
+                    <img ng-src="img/home_{{ active=='index' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">首页</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/nearby" ng-click="jump()" class="footer-nav footer-icon nearby-page {{'active-'+ (active=='nearby')}}">
+                    <img ng-src="img/nearby_{{ active=='nearby' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">同城</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/shopping_cart" ng-click="jump()" class="footer-nav footer-icon shopping-cart-page {{'active-'+ (active=='shopping_cart')}}">
+                    <img ng-src="img/shopping_cart_{{ active=='shopping_cart' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">购物车</span>
+                </a>
+            </div>
+
+            <div class="flex-item">
+                <a href="#/user" ng-click="jump()" class="footer-nav footer-icon user-page {{'active-'+ (active=='user')}}">
+                    <img ng-src="img/user_{{ active=='user' ? 'active':'normal'}}.png" alt="" class="block">
+                    <span class="xs-small block text-center nowrap">我</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- overlay -->
+    <div class="overlay" ng-class="overlay"></div>
+    <!-- preloader modal -->
+    <div class="loading-modal box box-lg" ng-class="modal">
+        <span class="preloader"></span>
+        <div class="box text-center">正在加载请稍等</div>
+    </div>
+    <!-- phonegap api -->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+    app.initialize();
+    </script>
+    <!-- baidu map -->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Nn6KEtPMmGsWm5eb6IG1EKGy"></script>
+    <!-- <div class="top-page flexbox vertical">
+        <div id="header">
+            <div ng-include="'partials/header.html'"></div>
+        </div>
+        <div class="flex-item scroll">
+            <div ng-view ng-class="slide"></div>
+        </div>
+        <div id="footer">
+            <div ng-include="'partials/footer.html'"></div>
+        </div>
+    </div> -->
+
+</body>
+
+</html>

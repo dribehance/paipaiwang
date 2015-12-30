@@ -1,0 +1,19 @@
+<div class="text-grey">
+    <div class=" box box-lg">
+        <div class="row">
+            <div class="col-xs-6">当前位置：{{ getCity() }}</div>
+            <div class="col-xs-6 text-right"><span ng-show="!located">定位中</span></div>
+        </div>
+    </div>
+    <div class="line grey"></div>
+</div>
+<div class="text-grey text-center box box-lg" ng-show="!loaded">正在加载</div>
+<div class="flex-item scroll" ng-show="loaded">
+    <ul class="ls">
+        <li ng-repeat="city in cities">
+            <label class="ng-label box-lr text-left">
+                <input type="radio" class="hide" ng-click="getDistricts(city)" value="{{city}}">{{city}}</label>
+            <div class="line grey"></div>
+        </li>
+    </ul>
+</div>

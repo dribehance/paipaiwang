@@ -1,0 +1,9 @@
+<p class="payment-tip text-center text-red large">{{ paymentMessage }}</p>
+<div class="row box">
+	<div class="col-xs-6">
+		<a href="#/index" class="btn btn-danger block btn-lg">回到首页</a>
+	</div>
+	<div class="col-xs-6">
+		<a href="#/order" class="btn btn-danger block btn-lg">查看全部订单</a>
+	</div>
+</div>

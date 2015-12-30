@@ -1,0 +1,29 @@
+<div class="footer flexbox">
+    <div class="flex-item">
+        <a href="#/index" ng-click="jump()" class="footer-nav footer-icon home-page {{'active-'+ (active=='index')}}">
+            <img ng-src="img/home_{{ active=='index' ? 'active':'normal'}}.png" alt="" class="block">
+            <span class="xs-small block text-center nowrap">首页</span>
+        </a>
+    </div>
+    <div class="nav-line"></div>
+    <div class="flex-item">
+        <a href="#/nearby" ng-click="jump()" class="footer-nav footer-icon nearby-page {{'active-'+ (active=='nearby')}}">
+            <img ng-src="img/nearby_{{ active=='nearby' ? 'active':'normal'}}.png" alt="" class="block">
+            <span class="xs-small block text-center nowrap">同城</span>
+        </a>
+    </div>
+    <div class="nav-line"></div>
+    <div class="flex-item">
+        <a href="#/shopping_cart" ng-click="jump()" class="footer-nav footer-icon shopping-cart-page {{'active-'+ (active=='shopping_cart')}}">
+            <img ng-src="img/shopping_cart_{{ active=='shopping_cart' ? 'active':'normal'}}.png" alt="" class="block">
+            <span class="xs-small block text-center nowrap">购物车</span>
+        </a>
+    </div>
+    <div class="nav-line"></div>
+    <div class="flex-item">
+        <a href="#/user" ng-click="jump()" class="footer-nav footer-icon user-page {{'active-'+ (active=='user')}}">
+            <img ng-src="img/user_{{ active=='user' ? 'active':'normal'}}.png" alt="" class="block">
+            <span class="xs-small block text-center nowrap">我</span>
+        </a>
+    </div>
+</div>

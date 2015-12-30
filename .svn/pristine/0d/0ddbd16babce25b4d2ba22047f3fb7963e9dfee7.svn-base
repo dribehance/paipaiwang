@@ -1,0 +1,38 @@
+<div ng-repeat="order in auctionOrders" class="box-mb box-shadow">
+    <a ng-click="next()" ng-href="" class="block box bg-white info-section">
+        <div class="thumbnail">
+            <img class="block" src="" alt="">
+        </div>
+        <p class="text-light-grey big nowrap">{{ order.title}}</p>
+        <p class="ng-price x-small">
+            <span class="box-r">{{ order.price }}</span>
+            <span class="chosen">底价</span>
+        </p>
+        <div class="row">
+            <div class="col-xs-6">
+                <span class="text-light-grey box-r small">加价幅度</span>
+                <span class="text-red">10</span>
+            </div>
+            <div class="col-xs-6 text-right">
+                <span class="text-red small">出价</span>
+                <span class="ng-price small box-r">59.8</span>
+            </div>
+        </div>
+    </a>
+    <div class="box-lr">
+    	<div class="line"></div>
+    </div>
+    
+    <div class="box bg-white text-green row">
+    	<div class="col-xs-6">
+    		<span class="btn x-small text-green">竞拍成功</span>
+    	</div>
+    	<div class="col-xs-3">
+    		<a href="#/auction/traffic" class="btn btn-default block">查看物流</a>
+    	</div>
+    	<div class="col-xs-3">
+    		<a href="#/auction/order/comfirm" class="btn btn-default block">确认收货</a>
+    	</div>
+    </div>
+    <div class="line grey"></div>
+</div>

@@ -1,0 +1,49 @@
+<div class="catalog-nav scroll">
+    <ul class="ls">
+        <li>
+            <label ng-href="#/catalog/woman" class="block box text-darkgrey text-center {{ catalog == 'woman'?'active':''}}">女人装扮
+                <input type="radio" ng-click="getClothes('woman')" ng-model="catalog" class="hide box-tb nowrap block" value="woman">
+            </label>
+        </li>
+        <li>
+            <label ng-href="#/catalog/man" class="block box text-darkgrey text-center {{ catalog == 'man'?'active':''}}">男人装扮
+                <input type="radio" ng-click="getClothes('man')" ng-model="catalog" class="hide box-tb nowrap block" value="man">
+            </label>
+        </li>
+        <li>
+            <label ng-href="#/catalog/baby" class="block box text-darkgrey text-center {{ catalog == 'baby'?'active':''}}">妈咪宝贝
+                <input type="radio" ng-click="getClothes('baby')" ng-model="catalog" class="hide box-tb nowrap block" value="baby">
+            </label>
+        </li>
+        <li>
+            <label ng-href="#/catalog/digital" class="block box text-darkgrey text-center {{ catalog == 'digital'?'active':''}}">手机数码
+                <input type="radio" ng-click="getClothes('digital')" ng-model="catalog" class="hide box-tb nowrap block" value="digital">
+            </label>
+        </li>
+        <li>
+            <label ng-href="#/catalog/office" class="block box text-darkgrey text-center {{ catalog == 'office'?'active':''}}">家电办公
+                <input type="radio" ng-click="getClothes('office')" ng-model="catalog" class="hide box-tb nowrap block" value="office">
+            </label>
+        </li>
+        <li>
+            <label ng-href="#/catalog/jewelry" class="block box text-darkgrey text-center {{ catalog == 'jewelry'?'active':''}}">美妆珠宝
+                <input type="radio" ng-click="getClothes('jewelry')" ng-model="catalog" class="hide box-tb nowrap block" value="jewelry">
+            </label>
+        </li>
+        <li>
+            <label ng-href="#/catalog/food" class="block box text-darkgrey text-center {{ catalog == 'food'?'active':''}}">食品百货
+                <input type="radio" ng-click="getClothes('food')" ng-model="catalog" class="hide box-tb nowrap block" value="food">
+            </label>
+        </li>
+        <li>
+            <label ng-href="#/catalog/outdoor" class="block box text-darkgrey text-center {{ catalog == 'outdoor'?'active':''}}">运动户外
+                <input type="radio" ng-click="getClothes('outdoor')" ng-model="catalog" class="hide box-tb nowrap block" value="outdoor">
+            </label>
+        </li>
+        <li>
+            <label ng-href="#/catalog/furniture" class="block box text-darkgrey text-center {{ catalog == 'furniture'?'active':''}}">家装家饰
+                <input type="radio" ng-click="getClothes('furniture')" ng-model="catalog" class="hide box-tb nowrap block" value="furniture">
+            </label>
+        </li>
+    </ul>
+</div>

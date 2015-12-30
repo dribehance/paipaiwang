@@ -1,0 +1,136 @@
+<ul class="ls bg-white">
+    <li class="col-xs-4">
+        <label class="ng-label small active-{{ condition == 'food' }}" ng-click="toggle('food')">{{ conditions.type }}</label>
+    </li>
+    <li class="col-xs-4">
+        <label class="ng-label small active-{{ condition == 'district' }}" ng-click="toggle('district')">{{ conditions.street }}</label>
+    </li>
+    <li class="col-xs-4">
+        <label class="ng-label small active-{{ condition == 'distance' }}" ng-click="toggle('distance')">{{ orderType[conditions.order_type] }}</label>
+    </li>
+</ul>
+<div class="scroll flex-item">
+    <div class="text-center text-grey box box-lg" ng-show=" !loaded ">正在加载</div>
+    <div class="text-center text-grey box box-lg" ng-show=" (loaded) && stores.list.length < 1 ">所选区域无商家</div>
+    <div ng-repeat="store in stores.list" ng-show="(loaded) && stores.list.length > 0">
+        <a ng-click="next()" ng-href="#/store/{{ store.id }}" class="block box info-section">
+            <div class="thumbnail">
+                <img class="block" ng-src="{{ IMG_PATH + store.cover }}" alt="">
+            </div>
+            <p class="text-light-grey big nowrap">{{ store.name}}</p>
+            <div class="row">
+                <div class="col-xs-6">
+                    <p class="text-light-grey nowrap">
+                        <span>人均：{{ store.percapita }}</span>
+                    </p>
+                </div>
+                <div class="col-xs-6 nowap text-right">
+                    <p class="stars">
+                        <span class="star-icon" ng-repeat="n in getArray(store.star) track by $index"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <p class="text-light-grey nowrap">
+                        <span>{{ store.type }}</span>
+                    </p>
+                </div>
+                <div class="col-xs-6 nowap">
+                    <p class="text-light-grey text-right">
+                        {{ toInt(store.distance) }}m
+                    </p>
+                </div>
+            </div>
+        </a>
+        <div class="line"></div>
+    </div>
+</div>
+<div class="food-condition scroll" ng-show="condition == 'food'">
+    <div class="bg-transparent">
+        <ul class="ls bg-white">
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.type" value="全部">全部</label>
+                <div class="line grey"></div>
+            </li>
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.type" value="火锅">火锅</label>
+                <div class="line grey"></div>
+            </li>
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.type" value="自助餐">自助餐</label>
+                <div class="line grey"></div>
+            </li>
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.type" value="西餐">西餐</label>
+                <div class="line grey"></div>
+            </li>
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.type" value="韩式料理">韩式料理</label>
+                <div class="line grey"></div>
+            </li>
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.type" value="蛋糕甜点">蛋糕甜点</label>
+                <div class="line grey"></div>
+            </li>
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.type" value="烧烤活鱼">烧烤活鱼</label>
+                <div class="line grey"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="district-condition scroll" ng-show="condition == 'district'">
+    <div class="bg-transparent">
+        <ul class="ls bg-white">
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.street" value="全城">全城</label>
+                <div class="line grey"></div>
+            </li>
+            <li ng-click="fetch()" ng-repeat="district in districts">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.street" value="{{ district }}">{{ district }}</label>
+                <div class="line grey"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="distance-condition scroll" ng-show="condition == 'distance'">
+    <div class="bg-transparent">
+        <ul class="ls bg-white">
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.order_type" value="4">智能排序</label>
+                <div class="line grey"></div>
+            </li>
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.order_type" value="0">离我最近</label>
+                <div class="line grey"></div>
+            </li>
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.order_type" value="1">评价最高</label>
+                <div class="line grey"></div>
+            </li>
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.order_type" value="2">人气最高</label>
+                <div class="line grey"></div>
+            </li>
+            <li ng-click="fetch()">
+                <label class="ng-label box-lr text-left">
+                    <input type="radio" class="hide" ng-model="conditions.order_type" value="4">最新发布</label>
+                <div class="line grey"></div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="ng-tab">
+    <ul class="ls row">
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderState == '' }}">
+                <input type="radio" name="tab-group" ng-model="orderState" value="" class="hide">全部</label>
+        </li>
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderState == 'unpaid' }}">
+                <input type="radio" name="tab-group" ng-model="orderState" value="unpaid" class="hide">待付款</label>
+        </li>
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderState == 'uncomfirm' }}">
+                <input type="radio" name="tab-group" ng-model="orderState" value="uncomfirm" class="hide">待发货</label>
+        </li>
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderState == 'unreach' }}">
+                <input type="radio" name="tab-group" ng-model="orderState" value="unreach" class="hide">待收货</label>
+        </li>
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderState == 'uncomment' }}">
+                <input type="radio" name="tab-group" ng-model="orderState" value="uncomment" class="hide">待评价</label>
+        </li>
+        <li class="col-xs-2">
+            <label class="ng-label small active-{{ orderState == 'returning' }}">
+                <input type="radio" name="tab-group" ng-model="orderState" value="returning" class="hide">退货中</label>
+        </li>
+    </ul>
+</div>
+<div class="ng-tab-content flex-item scroll">
+    <div ng-include="'partials/orders/order_all.html'"></div>
+</div>

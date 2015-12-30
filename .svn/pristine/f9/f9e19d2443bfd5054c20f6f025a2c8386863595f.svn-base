@@ -1,0 +1,34 @@
+<div class="box info-section bg-white">
+    <div class="thumbnail">
+        <img class="block" src="" alt="">
+    </div>
+    <p class="text-light-grey big nowrap">2014秋季装文艺清新蝴蝶结宽松中长</p>
+    <p class="ng-price small">￥59.8</p>
+</div>
+<div class="box box-lg">
+    <div class="row">
+        <div class="col-xs-6 text-light-grey">
+            数量
+        </div>
+        <div class="col-xs-6">
+            <div class="amount-box">
+                <div class="input-group has-error">
+                    <span class="input-group-addon" ng-click="amountMinus()">-</span>
+                    <input class="form-control text-center" type="number" min="0" max="99" ng-init="amount=1" ng-model="amount">
+                    <span class="input-group-addon" ng-click="amountPlus()">+</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+</div>
+<div class="box box-lg">
+    <div class="row">
+        <div class="col-xs-6 text-light-grey">
+            合计
+        </div>
+        <div class="col-xs-6 text-right">
+            <span class="text-red">{{ amount }}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="comment-list row">
+	<div class="comment-item" ng-repeat="comment in product.comment.contents">
+		<h4 class="text-red">{{ comment.username }}</h4>
+		<p class="nowrap text-darkgrey">{{ comment.content }}</p>
+		<div class="text-grey nowrap">
+			颜色：{{ comment.meta_1 }}&nbsp;&nbsp;&nbsp;
+			尺码：{{ comment.meta_2 }}
+		</div>
+		<img class="avatar" src="" alt="">
+		<div class="stars">
+			<span class="star-icon" ng-repeat="n in getArray(comment.star) track by $index"></span>
+		</div>
+		<div class="date text-grey">{{ comment.post_time }}</div>
+		<div class="line"></div>
+	</div>
+</div>

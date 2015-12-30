@@ -1,0 +1,2 @@
+<h1 class="text-red text-center">{{ product.info.name}}</h1>
+<div class="text-grey">{{ product.info.summary }}</div>

@@ -1,0 +1,12 @@
+<div class="box box-lg bg-white box-mb">
+	<div class="box text-center" ng-class="loading">正在加载中</div>
+	<div class="row" ng-repeat="record in records" ng-show="records.length>0">
+		<div class="col-xs-6 text-grey nowrap">
+			购买了<span class="text-red">{{record.title}}</span>消费{{ record.money }}拍币
+		</div>
+		<div class="col-xs-6 text-grey nowrap text-right">
+			{{ record.post_time }}
+		</div>
+	</div>
+	<div class="box" ng-show="records.length<1"><div class="no-data blink"></div><div>暂无数据</div></div>
+</div>

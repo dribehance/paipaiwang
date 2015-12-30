@@ -1,0 +1,99 @@
+<!-- <div ng-include="'partials/index/header.html'"></div>
+<div ng-include="'partials/index/content.html'" class="flex-item scroll"></div>
+<div ng-include="'partials/footer.html'"></div> -->
+<div class="header flexbox">
+    <div class="logo text-center flexbox vertical">
+        <div class="logo-cn large">拍米</div>
+        <div class="logo-en">paimeet</div>
+    </div>
+</div>
+<div class="flex-item">
+    <div class="container">
+        <ul class="ls row box">
+            <li class="col-xs-3">
+                <a ng-click="next()" href="#/strategy" class="block text-center index-icon">
+                    <img ng-src="img/book.png" alt="" class="block">
+                    <em class="block text-center x-small nowrap">拍币攻略</em>
+                </a>
+            </li>
+            <li class="col-xs-3">
+                <a ng-click="next()" href="#/hot" class="block text-center index-icon">
+                    <img ng-src="img/hot.png" alt="" class="block">
+                    <em class="block text-center x-small nowrap">热卖商品</em>
+                </a>
+            </li>
+            <li class="col-xs-3">
+                <a ng-click="next()" href="#/catalogs" class="block text-center index-icon">
+                    <img ng-src="img/grid.png" alt="" class="block">
+                    <em class="block text-center x-small nowrap">分类换购</em>
+                </a>
+            </li>
+            <li class="col-xs-3">
+                <a ng-click="next()" href="#/auctions" class="block text-center index-icon">
+                    <img ng-src="img/hammer.png" alt="" class="block">
+                    <em class="block text-center x-small nowrap">竞拍</em>
+                </a>
+            </li>
+            <li class="clearfix box"></li>
+            <li class="col-xs-3">
+                <a ng-click="next()" href="#lucky_auctions" class="block text-center index-icon">
+                    <img ng-src="img/clover.png" alt="" class="block">
+                    <em class="block text-center x-small nowrap">幸运拍</em>
+                </a>
+            </li>
+            <li class="col-xs-3">
+                <a ng-click="next()" href="#/charge" class="block text-center index-icon">
+                    <img ng-src="img/phone.png" alt="" class="block">
+                    <em class="block text-center x-small nowrap">话费充值</em>
+                </a>
+            </li>
+            <li class="col-xs-3">
+                <a ng-click="next()" href="#/index" class="block text-center index-icon">
+                    <img ng-src="img/heart.png" alt="" class="block">
+                    <em class="block text-center x-small nowrap">拍米公益</em>
+                </a>
+            </li>
+            <li class="col-xs-3">
+                <a ng-click="next()" href="#/orders" class="block text-center index-icon">
+                    <img ng-src="img/order.png" alt="" class="block">
+                    <em class="block text-center x-small nowrap">全部订单</em>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="box-mb box-mt">
+        <a ng-href="#/product/{{banners.pinpai}}" class="block">
+            <img ng-src="img/brand_street.png" alt="" class="block">
+        </a>
+    </div>
+
+</div>
+<div class="footer flexbox">
+    <div class="flex-item">
+        <a href="#/index" ng-click="jump()" class="footer-nav footer-icon home-page {{'active-'+ (active=='index')}}">
+            <img ng-src="img/home_{{ active=='index' ? 'active':'normal'}}.png" alt="" class="block">
+            <span class="xs-small block text-center nowrap">首页</span>
+        </a>
+    </div>
+
+    <div class="flex-item">
+        <a href="#/nearby" ng-click="jump()" class="footer-nav footer-icon nearby-page {{'active-'+ (active=='nearby')}}">
+            <img ng-src="img/nearby_{{ active=='nearby' ? 'active':'normal'}}.png" alt="" class="block">
+            <span class="xs-small block text-center nowrap">同城</span>
+        </a>
+    </div>
+
+    <div class="flex-item">
+        <a href="#/shopping_cart" ng-click="jump()" class="footer-nav footer-icon shopping-cart-page {{'active-'+ (active=='shopping_cart')}}">
+            <img ng-src="img/shopping_cart_{{ active=='shopping_cart' ? 'active':'normal'}}.png" alt="" class="block">
+            <span class="xs-small block text-center nowrap">购物车</span>
+        </a>
+    </div>
+
+    <div class="flex-item">
+        <a href="#/user" ng-click="jump()" class="footer-nav footer-icon user-page {{'active-'+ (active=='user')}}">
+            <img ng-src="img/user_{{ active=='user' ? 'active':'normal'}}.png" alt="" class="block">
+            <span class="xs-small block text-center nowrap">我</span>
+        </a>
+    </div>
+</div>

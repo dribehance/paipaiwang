@@ -1,0 +1,19 @@
+paipaiwang.factory("_City",function($rootScope,$window){
+	return {
+		get:function () {
+			return $window.localStorage.getItem("city");
+		},
+		set:function(city) {
+			$rootScope.CITY = city;
+			$window.localStorage.setItem("city",$rootScope.CITY);
+		}
+	}
+});
+paipaiwang.factory("_Geo",function($rootScope,$window){
+	return {
+		getCurrentPosition:function(success,error) {
+			alert("geo is call");
+			navigator.geolocation.getCurrentPosition(success,error);
+		}
+	}
+});

@@ -1,0 +1,6 @@
+<div class="header flexbox">
+    <div class="logo text-center flexbox vertical">
+    	<div class="logo-cn large">拍米</div>
+    	<div class="logo-en">paimeet</div>
+    </div>
+</div>

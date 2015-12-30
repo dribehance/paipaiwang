@@ -1,0 +1,1285 @@
+var indexController = function($scope, $http) {
+    $scope.$parent.active = "index";
+    $scope.pageName = "首页";
+};
+var nearbyController = function($scope, $http, _Geo) {
+    $scope.$parent.active = "nearby";
+    $scope.pageName = "同城";
+    $scope.city = _Geo.get().city;
+};
+var shoppingCartController = function($scope, $http, _ShoppingCart) {
+    $scope.$parent.active = "shopping_cart";
+    $scope.pageName = "购物车";
+    $scope.actionMenu = "编辑";
+    _ShoppingCart.init("productCookies");
+    $scope.items = _ShoppingCart.getAll();
+    $scope.sum = function() {
+        var sum = 0;
+        angular.forEach($scope.items, function(item) {
+            sum += item.clearing ? item.price : 0;
+        });
+        return sum;
+    }
+    var flag = 0;
+    $scope.all = function() {
+        if (flag % 2 == 0) {
+
+            angular.forEach($scope.items, function(item) {
+                item.clearing = true;
+            });
+            $scope.total = true;
+            flag++;
+        } else {
+            angular.forEach($scope.items, function(item) {
+                item.clearing = false;
+            });
+            $scope.total = false;
+            flag++;
+        }
+    }
+    $scope.toggleAction = function() {
+        if ($scope.actionMenu == '编辑') {
+            $scope.actionMenu = '完成';
+        } else {
+            $scope.actionMenu = '编辑';
+        }
+    }
+    $scope.removeItem = function() {
+        $scope.items = $scope.items.filter(function(item) {
+            return !item.clearing;
+        });
+        _ShoppingCart.merge($scope.items);
+    }
+};
+var userController = function($scope, $http,_User) {
+    $scope.$parent.active = "user";
+    $scope.pageName = "我的";
+    $scope.userProfile = _User.get();
+};
+var strategyController = function($scope, $http) {
+    $scope.pageName = "拍币策略";
+    $http.get("remote-data/index.json", {
+        cache: true
+    }).success(function(data) {
+        $scope.content = " 拍币策略";
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var hotController = function($scope, $http, $rootScope) {
+    $scope.pageName = "热门商品";
+    var remoteData = $rootScope.host + "app/BaseProducts/hotProducts";
+    $scope.loaded = false;
+    $http.get(remoteData, {
+        cache: true
+    }).success(function(data) {
+        $scope.products = data.HotProducts;
+        $scope.loaded = true;
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var auctionsController = function($scope,$rootScope, $http) {
+
+    $scope.pageName = "竞拍";
+    $scope.getStartAuctions = function(auction) {
+        $scope.loaded = false;
+        var remoteData = $rootScope.host + "app/Auction/getStartAuctionList";
+        $http.get(remoteData).success(function(data) {
+            $scope.auctions = data.StartAuctionProductList.list;
+            $scope.loaded = true;
+        }).error(function(e) {
+            console.log(" network error");
+            console.log(e);
+        });
+    }
+    $scope.getStartedAuctions = function() {
+        $scope.loaded = false;
+        var remoteData = $rootScope.host + "app/Auction/getStartedAuctionList";
+        $http.get(remoteData).success(function(data){
+            $scope.auctions = data.StartedAuctionProductList.list;
+            $scope.loaded = true;
+        }).error(function(e){
+            console.log(" network error");
+            console.log(e); 
+        });
+    }
+    $scope.getTime = function (time) {
+        return new Date(time).getTime();
+    }
+    $scope.getStartAuctions();
+};
+var auctionController = function($scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "竞拍详情";
+    $scope.loaded = false;
+    var auctionID = $routeParams.auctionID;
+    var remoteData = $rootScope.host + "app/Auction/getDetail?id=" + auctionID;
+    $http.get(remoteData).success(function(data) {
+        $scope.auction = data.auctionProduct;
+        $scope.records = data.record;
+        $scope.loaded = true;
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+
+}
+var auctionOrdersController = function($scope,$rootScope,$http,$routeParams,_User) {
+    _User._cache({
+        "id":28,
+        "username:":"dribehance"
+    })
+    var status = {
+        "0":"竞拍等待中",
+        "1":"竞拍失败",
+        "2":"竞拍成功",
+        "3":"待发货",
+        "4":"已发货",
+        "5":"已支付"
+    };
+    $scope.pageName = "我的竞拍";
+    $scope.loaded = false;
+    $scope.user = _User.get();
+    var userID = $scope.user.id;
+    var remoteData = $rootScope.host + "app/Auction/myAuctionProductList?user_id="+userID+"&pageNum=1";
+    $http.get(remoteData,{cache:true}).success(function(data) {
+        $scope.auctionOrders = data.myAuctionProduct.list;
+        $scope.loaded = true;
+        $scope.pageSize = $scope.auctionOrders.pageSize;
+        $scope.pageNum = $scope.auctionOrders.pageNum;
+        $scope.totalPage = $scope.auctionOrders.totalPage;
+    }).error(function(e) {
+        console.log(e);
+        console.log("network error");
+    });
+    $scope.getStatus = function (s) {
+        return status[s];
+    }
+}
+var auctionOrderController = function($scope, $http) {
+    $scope.pageName = "订单详情";
+    $http.get("remote-data/auction_order.json", {
+        cache: true
+    }).success(function(data) {
+        $scope.auctionOrder = data;
+    }).error(function() {
+
+    });
+}
+var auctionComfirmController = function($rootScope,$scope, $http) {
+    $scope.loaded = false;
+    var status = {
+        "-1":"账户拍币不足",
+        "0":"竞拍已经结束了",
+        "1":"出价成功"
+    }
+    var remoteData = $rootScope.host + "app/AuctionProductInteraction/bid?id="+auctionID+"&user_id="+userID+"&price="+price;
+    $http.get(remoteData).success(function(data) {
+        $scope.pageName = data.status == 1 ?"订单成功":"订单失败";
+        $scope.auction = data;
+        $scope.consumer = price;
+        $scope.loaded = true;
+    }).error(function(e) {
+        console.log(e)
+        console.log("error")
+    });
+}
+var auctionTrackController = function($scope, $http) {
+    $scope.pageName = "物流信息";
+    $http.get("remote-data/auction_track.json", {
+        cache: true
+    }).success(function(data) {
+        $scope.auctionTrack = data;
+    }).error(function() {
+
+    });
+}
+var auctionPlaceController = function($scope, $http,_User,$rootScope,$routeParams) {
+    $scope.pageName = "确认竞拍订单";
+    $scope.loaded = false;
+    var auctionID = $routeParams.auctionID;
+    var userID = _User.get().user_id;
+    var remoteData = $rootScope.host + "app/AuctionProductInteraction/configAuctionProductOrder?product_id="+auctionID+"&user_id="+userID;
+    $http.get(remoteData).success(function(data) {
+        $scope.product = data.product;
+        $scope.contact = data.address;
+        $scope.bid = data.BidRecord;
+        $scope.loaded = true;
+    }).error(function(e) {
+        console.log(e)
+    });
+    $scope.getDelivery = function(delivery){
+        return delivery == 1 ? "包邮":"付费";
+    }
+}
+var luckyAuctionController = function($scope,$http,$rootScope) {
+    $scope.pageName = "幸运拍详情";
+    $scope.loaded = false;
+    var auctionID = $routeParams.auctionID;
+    var remoteData = $rootScope.host + "app/Lucky/getDetail?id=" + auctionID;
+    $http.get(remoteData).success(function(data) {
+        $scope.auction = data.luckyProduct;
+        $scope.records = data.record;
+        $scope.loaded = true;
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+}
+var luckyAuctionsController = function($scope, $http, $rootScope) {
+
+    $scope.pageName = "幸运拍";
+
+    $scope.getStartLuckyList = function() {
+        var remoteData = $rootScope.host + "app/Lucky/getStartLuckyList";
+        $scope.loaded = false;
+        $http.get(remoteData, {
+            cache: true
+        }).success(function(data) {
+            $scope.auctions = data.StartLuckyProductList;
+            $scope.loaded = true;
+        }).error(function(e) {
+            console.log(" network error");
+            console.log(e);
+        });
+    }
+    $scope.getStartedLuckyList = function() {
+        var remoteData = $rootScope.host + "app/Lucky/getStartedLuckyList";
+        $scope.loaded = false;
+        $http.get(remoteData, {
+            cache: true
+        }).success(function(data) {
+            $scope.auctions = data.StartedLuckyProductList.list;
+            $scope.loaded = true;
+        }).error(function(e) {
+            console.log(" network error");
+            console.log(e);
+        });
+    }
+    $scope.getEndTime = function(endtime) {
+        return new Date(endtime).getTime();
+    }
+    $scope.getStartedLuckyList();
+};
+var luckyAuctionPlaceController = function($scope, $http,_User,$rootScope,$routeParams) {
+    $scope.pageName = "确认幸运拍订单";
+    $scope.loaded = false;
+    var auctionID = $routeParams.auctionID;
+    var userID = _User.get().user_id;
+    var remoteData = $rootScope.host + "app/AuctionProductInteraction/configAuctionProductOrder?product_id="+auctionID+"&user_id="+userID;
+    $http.get(remoteData).success(function(data) {
+        $scope.product = data.product;
+        $scope.contact = data.address;
+        $scope.bid = data.BidRecord;
+        $scope.loaded = true;
+    }).error(function(e) {
+        console.log(e)
+    });
+    $scope.getDelivery = function(delivery){
+        return delivery == 1 ? "包邮":"付费";
+    }
+}
+var luckyAuctionOrdersController = function($scope,$rootScope,$http,$routeParams,_User) {
+    _User._cache({
+        "id":28,
+        "username:":"dribehance"
+    })
+    var status = {
+        "0":"竞拍等待中",
+        "1":"竞拍失败",
+        "2":"竞拍成功",
+        "3":"待发货",
+        "4":"已发货",
+        "5":"已支付"
+    };
+    $scope.pageName = "我的幸运拍竞拍";
+    $scope.loaded = false;
+    $scope.user = _User.get();
+    var userID = $scope.user.id;
+    var remoteData = $rootScope.host + "app/Auction/myLuckyProductList?user_id="+userID+"&pageNum=1";
+    $http.get(remoteData,{cache:true}).success(function(data) {
+        $scope.auctionOrders = data.myLuckyProduct.list;
+        $scope.loaded = true;
+        $scope.pageSize = $scope.auctionOrders.pageSize;
+        $scope.pageNum = $scope.auctionOrders.pageNum;
+        $scope.totalPage = $scope.auctionOrders.totalPage;
+    }).error(function(e) {
+        console.log(e);
+        console.log("network error");
+    });
+    $scope.getStatus = function (s) {
+        return status[s];
+    }
+}
+var luckyAuctionOrderController = function($scope, $http) {
+    $scope.pageName = "订单详情";
+    $http.get("remote-data/auction_order.json", {
+        cache: true
+    }).success(function(data) {
+        $scope.auctionOrder = data;
+    }).error(function() {
+
+    });
+}
+var chargeController = function($scope, $http) {
+    $scope.pageName = "话费充值";
+    $http.get("remote-data/index.json").success(function(data) {
+        $scope.charge = data;
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var chargeComfirmController = function($scope, $http) {
+    $scope.pageName = "订单确认";
+    $http.get("remote-data/index.json").success(function(data) {
+        $scope.charge = data;
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var chargeReachController = function($scope, $http) {
+    $scope.pageName = "充值成功";
+    $http.get("remote-data/index.json").success(function(data) {
+        $scope.charge = data;
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var welfareController = function($scope, $http) {
+    $http.get("remote-data/index.json").success(function(data) {
+        $scope.home = data;
+        $scope.content = " i am welfare";
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var ordersController = function($rootScope,$scope, $http,_User) {
+    $scope.pageName = "全部订单";
+    $scope.orderState = "";
+    $scope.loaded = false;
+    var userID = _User.get().user_id;
+    var remoteData = $rootScope.host + "app/Order/getOrderList?user_id="+userID;
+    $http.get(remoteData).success(function(data) {
+        $scope.orders = data.contentList;
+        $scope.loaded = true;
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+    $scope.orderReach = function() {
+        alert("order reach");
+        console.log("order reach")
+    }
+    $scope.orderCancel = function() {
+        alert("order cancel");
+        console.log("order cancel");
+    }
+};
+var orderController = function($rootScope,$scope, $http,_User) {
+    $scope.pageName = "订单详情";
+    $scope.loaded = false;
+    var remoteData = $rootScope.host + "app/Order/getOrderList?user_id="+userID;
+    $http.get(remoteData).success(function(data) {
+        $scope.content = " i am order";
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var orderReturnController = function($scope, $http) {
+    $scope.pageName = "退货申请";
+    $http.get("remote-data/index.json").success(function(data) {
+
+        $scope.content = " i am order";
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var orderTrackController = function($scope, $http) {
+    $scope.pageName = "订单物流";
+    $http.get("remote-data/index.json").success(function(data) {
+
+        $scope.content = " i am order";
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var orderStateController = function($scope, $http) {
+    $scope.pageName = "订单状态";
+    $http.get("remote-data/index.json").success(function(data) {
+
+        $scope.content = " i am order";
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var orderComfirmController = function($scope, $http) {
+    $scope.pageName = "订单确认";
+    $http.get("remote-data/index.json").success(function(data) {
+
+        $scope.content = " i am order";
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var orderExchangeController = function($scope, $http) {
+    $scope.pageName = "兑换码";
+    $http.get("remote-data/index.json").success(function(data) {
+
+        $scope.content = " i am order";
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var productController = function($scope, $http, $rootScope, $routeParams, _ShoppingCart) {
+    var productID = $routeParams.productID;
+    var remoteData = $rootScope.host + "app/BaseProducts/detail?id=" + productID;
+    var limit = 10;
+    $scope.pageName = "商品详情";
+    $scope.footer = true;
+    _ShoppingCart.init("productCookies");
+    $http.get(remoteData, {
+        cache: true
+    }).success(function(data) {
+        $scope.product = data.product;
+        $scope.records = data.record;
+        $scope.brand = data.brand;
+        $scope.comments = data.comment;
+
+        $scope.product.color = 'black';
+        $scope.product.size = 'S';
+        $scope.product.amount = 1;
+
+        $scope.getArray = function(n) {
+            return new Array(n);
+        };
+        $scope.pushToCart = function() {
+            $scope.slideUp = 'active';
+            $scope.footer = false;
+        }
+        $scope.goBuy = function() {
+            $scope.slideUp = 'active';
+            $scope.footer = false;
+        }
+        $scope.close = function() {
+            $scope.slideUp = '';
+            $scope.footer = true;
+        }
+        $scope.storeToCart = function() {
+            _ShoppingCart.addItem($scope.product, $scope.product.color, $scope.product.size, $scope.product.amount);
+            $scope.slideUp = '';
+
+        }
+
+        $scope.amountMinus = function() {
+            $scope.product.amount--;
+            if ($scope.product.amount < 1) {
+                $scope.product.amount = 1;
+            }
+        }
+        $scope.amountPlus = function() {
+            $scope.product.amount++;
+            if ($scope.product.amount > limit) {
+                $scope.product.amount = limit;
+            }
+        }
+
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var paymentController = function($scope, $http) {
+    $http.get("remote-data/index.json").success(function(data) {
+        $scope.pageName = "支付成功";
+        $scope.payment = "您的订单支付成功";
+    }).error(function(e) {
+        console.log(" network error");
+        console.log(e);
+    });
+};
+var catalogsController = function($rootScope, $scope, $http, $routeParams, $window) {
+    var catalogs = {
+        "woman": "女人装扮",
+        "man": "男人装扮",
+        "baby": "妈咪宝贝",
+        "digital": "手机数码",
+        "office": "家电办公",
+        "jewelry": "美妆珠宝",
+        "food": "食品百货",
+        "outdoor": "运动户外",
+        "furniture": "家装家饰"
+    }
+    $scope.pageName = "分类换购";
+
+    $scope.catalog = "woman";
+
+    $scope.getClothes = function(cloth) {
+        var remoteData = $rootScope.host + "app/BaseProducts/getSubCatalog?catalog=" + catalogs[cloth];
+        $scope.loaded = false;
+        $http.get(remoteData, {
+            cache: true
+        }).success(function(data) {
+
+            $scope.catalogName = catalogs[cloth];
+            $scope.catalogs = data.subCatalogs;
+            $scope.loaded = true;
+
+        }).error(function(e) {
+            $window.alert("fail")
+            console.log(" network error");
+            console.log(e);
+        });
+
+    }
+    $scope.getClothes("woman");
+};
+var catalogController = function($rootScope, $scope, $http, $routeParams, $window) {
+
+    var catalogID = $routeParams.catalogID;
+    var remoteData = $rootScope.host + "app/BaseProducts/products?catalogID=" + catalogID;
+
+    $scope.pageName = $routeParams.catalogName;
+    $scope.loaded = false;
+
+    $http.get(remoteData, {
+        cache: true
+    }).success(function(data) {
+        $scope.products = data.products;
+        $scope.loaded = true;
+    }).error(function(e) {
+        console.log("get catalog product error");
+        console.log(e)
+    });
+
+}
+var provincesController = function ($http,$rootScope,$scope,_Geo){
+    $scope.pageName = "选择省份";
+    $scope.loaded = false;
+    $http.get("remote-data/city/province.json").success(function(data){
+        $scope.provinces = data.province;
+        $scope.loaded = true;
+    }).error(function(data, status, headers, config){
+        alert("status:"+status);
+    });
+    _Geo.getCurrentPosition();
+    $scope.getCity = function () {
+        return _Geo.get().city;
+    }
+}
+var citiesController = function ($http,$rootScope,$scope,_Geo,$routeParams,$location){
+    $scope.pageName = "选择城市";
+    $scope.loaded = false;
+    var province = $routeParams.province,
+        directly = ["北京市","天津市","重庆市","上海市"],
+        isDirectly = directly.contains(province),
+        cityRef = "remote-data/city/city.json",
+        districtRef = "remote-data/city/district.json",
+        districtKey = province;
+
+    _Geo.setProvince(province);
+
+    $http.get(cityRef).success(function(data){
+        if ( isDirectly ) {
+            $scope.cities = new Array(province);
+        }else {
+            $scope.cities = data[province];
+        }
+        $scope.loaded = true;
+    }).error(function(e){
+        console.log(e)
+    });
+
+    $scope.getDistricts = function(city){
+        
+        if ( isDirectly ) {
+            districtRef = cityRef;
+            districtKey = city;
+        }else {
+            districtKey = province + city;
+        }
+        _Geo.setCity(city);
+
+        $http.get(districtRef).success(function(data){
+
+            _Geo.setDistrict(JSON.stringify(data[districtKey]));
+
+        }).error(function(e){
+            console.log(e)
+        });
+        $rootScope.slide = "fadeIn";
+        $location.path("/nearby").replace();
+    }
+    $scope.getCity = function () {
+        return _Geo.get().city;
+    }
+
+}
+var nearbyStoreController = function($window, $scope, $rootScope, $http, $routeParams, _Geo) {
+    $scope.pageName = "附近加盟店";
+};
+var storeExchangesController = function($window, $scope, $rootScope, $http, $routeParams, _Geo) {
+
+    $scope.pageName = "同城换购体验";
+    $scope.loaded = false;
+    var geo = _Geo.get();
+    var remoteData = $rootScope.host + "app/Nearby/getLocalSwitchExperienceList?city=" + geo.city;
+    $http.get(remoteData).success(function(data) {
+        $scope.stores = data.LocalSwitchExperienceList.list;
+        $scope.loaded = true;
+    });
+    $scope.switchCity = function(city) {
+        $rootScope.back();
+    }
+};
+var nearbyActivityController = function($window, $scope, $rootScope, $http, $routeParams,_Geo) {
+
+    $scope.pageName = "附近活动";
+    $scope.loaded = false;
+    var geo = _Geo.get();
+    var remoteData = $rootScope.host + "app/Nearby/getActivities?lat="+geo.lat+"&lng="+geo.lng+"&city="+geo.city;
+    $http.get(remoteData).success(function(data){
+    	$scope.activities = data.activities;
+    	$scope.loaded = true;
+    });
+};
+var nearbyHotStoreController = function($window, $scope, $rootScope, $http, $routeParams,_Geo) {
+
+    $scope.pageName = "同城热门店铺";
+    $scope.loaded = false;
+    var geo = _Geo.get();
+    var remoteData = $rootScope.host + "app/Nearby/getHotFranchisee?city="+geo.city+"&lat="+geo.lat+"&lng="+geo.lng+"&pageNum=1";
+    $http.get(remoteData).success(function(data){
+        $scope.stores = data.hot_franchisee.list;
+        $scope.loaded = true;
+        $scope.pageSize = $scope.stores.pageSize;
+        $scope.pageNum = $scope.stores.pageNum;
+        $scope.totalPage = $scope.stores.totalPage;
+    }).error(function(e){
+        console.log(e)
+        console.log("get hot store error")
+    })
+    $scope.getArray = function(n) {
+        return new Array(n);
+    }
+};
+var nearbyFoodController = function($window, $rootScope, $scope, $rootScope, $http, $routeParams, _Geo) {
+
+    $scope.pageName = "餐饮美食";
+    $scope.conditions = {
+        "type": "所有",
+        "street": "全城",
+        "order_type": "离我最近"
+    }
+    var geo = _Geo.get();
+    $scope.districts = geo.districts;
+    console.log(geo)
+    var current = '';
+    $scope.toggle = function(condition) {
+        if (current == condition) {
+            $scope.condition = current = '';
+        } else {
+            $scope.condition = current = condition;
+        }
+    }
+    $scope.fetch = function() {
+        $scope.toggle('');
+        $scope.loaded = false;
+        var remoteData = $rootScope.host + "app/Nearby/getFranchiseeList?" + "type=" + $scope.conditions.type + "&street=" + $scope.conditions.street + "&orderType=" + $scope.conditions.order_type + "&lat=" + geo.lat + "&lng=" + geo.lng + "&city=" + geo.city + "&pageNum=1";
+
+        $http.get(remoteData).success(function(data) {
+            $scope.loaded = true;
+            $scope.stores = data.franchiseeList;
+            $scope.pageSize = $scope.stores.pageSize;
+            $scope.pageNum = $scope.stores.pageNum;
+            $scope.totalPage = $scope.stores.totalPage;
+        }).error(function() {
+            console.log("network error")
+        });
+
+    }
+    $scope.getArray = function(n) {
+        return new Array(n);
+    };
+    $scope.fetch();
+
+};
+var nearbyFilmController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "电影";
+
+};
+var nearbyHotelController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "酒店";
+
+};
+var nearbyEntertainController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "休闲娱乐";
+
+};
+var nearbyLirenController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "丽人";
+
+};
+var nearbyServiceController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "生活服务";
+
+};
+var storeController = function($window, $scope, $rootScope, $http, $routeParams, _Geo) {
+
+    $scope.pageName = "店铺详情";
+    $scope.loaded = false;
+    $scope.storeID = $routeParams.storeID;
+    var geo = _Geo.get();
+    var remoteData = $rootScope.host + "app/Nearby/getFranchisee?id=" + $scope.storeID + "&lat=" + geo.lat + "&lng=" + geo.lng;
+    $http.get(remoteData, {
+        cache: true
+    }).success(function(data) {
+        $scope.store = data.franchisee;
+        $scope.comment = data.franchisee_comment_first.list[0];
+
+        // page info
+        $scope.pageSize = data.franchisee_comment_first.pageSize;
+        $scope.pageNum = data.franchisee_comment_first.pageNum;
+        $scope.totalPage = data.franchisee_comment_first.totalPage;
+
+        $scope.totalItem = parseInt($scope.totalPage) * parseInt($scope.pageSize);
+
+        $scope.loaded = true;
+    }).error(function(e) {
+        console.log(e);
+        console.log("get store detail error")
+    });
+    $scope.getArray = function(n) {
+        return new Array(n);
+    };
+
+};
+var storeGalleryController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "店铺相册";
+    $scope.loaded = false;
+    var storeID = $routeParams.storeID;
+    var remoteData = $rootScope.host + "app/Nearby/getFranchiseePictures?franchisee_id=" + storeID;
+    $http.get(remoteData).success(function(data) {
+        $scope.pictures = data.pictures;
+        $scope.loaded = true;
+    });
+
+};
+var storeExchangeController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "店铺交换体验";
+    $scope.storeID = $routeParams.storeID;
+    var remoteData = $rootScope.host + "app/Nearby/getLocalSwitchExperienceListOfFranchisee?franchisee_id=" + $scope.storeID;
+    $http.get(remoteData).success(function(data) {
+        $scope.exchanges = data.LocalSwitchSxperienceList.list;
+    }).error(function() {
+
+    });
+
+};
+var storeExchangeDetailController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "换购详情";
+    $scope.storeID = $routeParams.storeID;
+    $scope.loaded = false;
+    var remoteData = $rootScope.host + "app/Nearby/getLocalSwitchExperienceDetail?id="+storeID;
+    $http.get(remoteData).success(function(data) {
+        $scope.detail = data.localSwitchExperience;
+        $scope.loaded = true;
+    }).error(function() {});
+
+};
+var storeExchangeInfoController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "换购";
+    $scope.storeID = $routeParams.storeID;
+    $scope.targetID = $routeParams.targetID;
+    $scope.loaded = false;
+    var remoteData = $rootScope.host + "app/Nearby/getFranchiseeFromLocalSwitchExperience?id=" + $scope.targetID + "&franchisee_id=" + $scope.storeID
+    $http.get(remoteData).success(function(data) {
+        // exchange info
+        $scope.exchange = data.LocalSwitchExperience;
+        // comments 
+        $scope.comments = data.franchisee_comment_first.list[0];
+        // page info
+        $scope.pageSize = data.franchisee_comment_first.pageSize;
+        $scope.pageNum = data.franchisee_comment_first.pageNum;
+        $scope.totalPage = data.franchisee_comment_first.totalPage;
+
+        $scope.totalItem = parseInt($scope.totalPage) * parseInt($scope.pageSize);
+
+        // store info
+        $scope.store = data.franchisee;
+
+        $scope.loaded = true;
+    }).error(function() {});
+
+};
+var storeCommentsController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "店铺评论";
+    $scope.storeID = $routeParams.storeID;
+    $scope.loaded = false;
+    var remoteData = $rootScope.host + "app/Nearby/getCommentList?" + "franchisee_id=" + $scope.storeID + "&pageNum=1";
+    $http.get(remoteData, {
+        cache: true
+    }).success(function(data) {
+        $scope.comments = $scope.franchisee_comments.list;
+        $scope.pageSize = data.comments.pageSize;
+        $scope.pageNum = data.comments.pageNum;
+        $scope.totalPage = data.comments.totalPage;
+        $scope.loaded = true;
+    }).error(function(e) {
+        console.log(e);
+        console.log("get store detail error")
+    });
+    $scope.getArray = function(n) {
+        return new Array(n);
+    };
+
+
+};
+var commentController = function($window, $scope, $rootScope, $http, $routeParams, $location, _User) {
+
+    $scope.pageName = "评论";
+    $scope.comment = {
+        content: "555"
+    };
+    $scope.stars = 1;
+    $scope.submit = function() {
+        _User._cache({
+            id: 1
+        });
+        if (!_User.isLogin()) {
+            $scope.warning = true;
+            return;
+        }
+        $scope.warning = false;
+        var user = _User.get(),
+            userID = user.id,
+            targetID = $routeParams.targetID,
+            remoteData = $rootScope.host + "app/Nearby/writeComment?user_id=" + userID + "&franchisee_id=" + targetID + "&star=2&content=" + $scope.comment.content;
+        $http.get(remoteData).success(function(data) {
+            if (data.status) {
+                alert("评论成功");
+                $rootScope.slide = "fadeIn";
+                $location.path("/");
+            }
+        }).error(function(e) {
+            console.log(e);
+            console.log(" comment fail");
+        });
+
+        // $http.post(remoteData,{
+        // 	"user_id":userID,
+        // 	"franchisee_id":targetID,
+        // 	"star":$scope.stars,
+        // 	"content":$scope.content
+        // }).success(function(data){
+        // 	console.log("success")
+        // 	if (data.status) {
+
+        // 		$location.path("/");
+        // 	}
+        // }).error(function(e){
+        // 	console.log(" comment fail");
+
+        // 	console.log(e);
+        // });
+    }
+
+};
+var exchangePlaceController = function($window, $scope, $rootScope, $http, $routeParams,$location) {
+
+    $scope.pageName = "确认订单";
+    $scope.exchange = {
+        title:"",
+        cover:"",
+        price:"",
+        quantity: 1,
+        total:0
+    }
+    $scope.loaded = false;
+    var limit = 10,
+        exchangeID = $routeParams.exchangeID,
+        remoteData = $rootScope.host + "";
+    $http.get(remoteData).success(function(data){
+        $scope.exchange.title = data.title;
+        $scope.exchange.cover = data.cover;
+        $scope.exchange.price = data.price;
+        $scope.exchange.total = parseInt($scope.exchange.price) * parseInt($scope.exchange.quantity);
+    })
+    // on submit;
+    $scope.submit = function () {
+        var postData = $rootScope.host + "";
+        $http.get(postData).success(function(data){
+            
+            if ( data.status ) {
+                alert("支付成")
+                $rootScope.slide = "jump";
+                $location.path("/payment");
+            }
+        }).error(function(e){
+            console.log(e)
+            console.log(" exchange place error");
+        });
+    }
+    $scope.amountMinus = function() {
+        $scope.amount--;
+        if ($scope.amount < 1) {
+            $scope.amount = 1;
+        }
+    }
+    $scope.amountPlus = function() {
+        $scope.amount++;
+        if ($scope.amount > limit) {
+            $scope.amount = limit;
+        }
+    }
+
+};
+var personalInfoController = function($window, $scope, $rootScope, $http, $routeParams,_User) {
+
+    $scope.pageName = "个人资料";
+    $scope.loaded = false;
+    var userID = _User.get().user_id;
+    var remoteData = $rootScope.host + "app/Us/getUserInfo?user_id="+userID;
+    $http.get(remoteData).success(function(data){
+        $scope.user = data.UserInfo;
+        $scope.loaded = true;
+    }).error(function(e){
+        console.log(e);
+    });
+    $scope.save = function () {
+        // save data to serve 
+        $rootScope.back();
+    }
+};
+var modifyPasswordController = function($window, $scope, $rootScope, $http, $routeParams,_Nofication) {
+
+    $scope.pageName = "修改密码";
+    $scope.signProfile = {
+        "oldPassword":"",
+        "newPassword":"",
+        "newPasswordAgain":""
+    }
+    $scope.checked = false;
+    $scope.modify = function() {
+        $scope.check(function(){
+            if ( !($scope.newPassword && $scope.newPasswordAgain )) {
+                _Nofication.alert("请输入要修改的密码","修改提示","确定",function(){});
+                return;
+            }
+            if ( $scope.newPassword != $scope.newPasswordAgain ) {
+                _Nofication.alert("两次输入的密码不相同","修改提示","确定",function(){});
+                return;
+            }
+            var remoteData = $rootScope.host + "";
+            $http.get().success(function(data){
+                _Nofication.alert("密码修改成功","修改提示","确定",function(){
+                    $scope.$apply(function(){
+                        $rootScope.back();
+                    });
+                });
+            }).error(function(e){
+                console.log(e);
+            });
+        });
+    }
+    $scope.check = function(callback) {
+        var remoteData = $rootScope.host + "";
+        $http.get(remoteData).success(function(data){
+            callback();
+        }).error(function(e){
+            console.log(e)
+            console.log("get old password error")
+        });
+    }
+
+};
+var addressController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "地址详情";
+    $scope.loaded = false;
+    var addressID = $routeParams.addressID;
+    var remoteData = $rootScope.host + "app/Address/getDetailAddress?id="+addressID;
+    $http.get("remote-data/city/province.json").success(function(data){
+        $scope.provinces = data.province;
+    });
+    $http.get(remoteData).success(function(data){
+        $scope.address = data.address;
+        $scope.loaded = true;
+    }).error(function(e){
+        $scope.loaded = false;
+        $scope.loadedError = true;
+        console.log(e);
+        console.log("get address detail");
+    });
+
+};
+var addressesController = function($window, $scope, $rootScope, $http, $routeParams,_User) {
+
+    $scope.pageName = "收货地址";
+    $scope.loaded = false;
+    $scope.defaultAddress = -1;
+    var userID = _User.get().user_id;
+    var remoteData = $rootScope.host + "app/Address/getAddressList?user_id="+userID;
+    $http.get(remoteData).success(function(data){
+        $scope.loaded = true;
+        $scope.addresses = data.addressList;
+    }).error(function(e){
+        $scope.loaded = false;
+        $scope.loadedError = true;
+        console.log(e)
+        console.log("get address list error");
+    });
+
+};
+var addressNewController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "新增收货地址";
+
+};
+var moreController = function($window, $scope, $rootScope, $http, $routeParams,_User) {
+
+    $scope.pageName = "更多";
+    $scope.exit = function() {
+        _User.exit();
+    }
+
+};
+var favourController = function($window, $scope, $rootScope, $http, $routeParams,_User) {
+
+    $scope.pageName = "我的收藏";
+    $scope.loaded = false;
+    var userID = _User.get().user_id;
+    var remoteData = $rootScope.host + "app/Us/getMyCollet?&user_id="+userID+"pageNum=1";
+    $http.get().success(function(data){
+        $scope.favours = data.MyCollects.list;
+
+        $scope.pageSize = data.MyCollects.pageSize;
+        $scope.pageNumber = data.MyCollects.pageNumber;
+        $scope.totalPage = data.MyCollects.totalPage;
+        $scope.loaded = true;
+    }).error();
+
+};
+var recordController = function($window, $scope, $rootScope, $http, $routeParams) {
+
+    $scope.pageName = "消费记录";
+    $scope.loaded = false;
+    $http.get().success(function(data){
+        $scope.
+        $scope.loaded = true;
+    }).error(function(e){
+        console.log(e)
+        console.log("get consumer error")
+    });
+
+};
+var messageController = function($window, $scope, $rootScope, $http, $routeParams,_User) {
+
+    $scope.pageName = "消息中心";
+    $scope.loaded = false;
+    var userID = _User.get().user_id;
+    var remoteData = $rootScope.host + "app/Message/list?user_id="+userID+"&pageNum=1";
+    $http.get(remoteData).success(function(data){
+        $scope.loaded = true;
+        $scope.messages = data.messages;
+    }).error(function(e){
+        console.log(e)
+        console.log(" get message list error ");
+    });
+
+};
+var feedbackController = function($window, $scope, $rootScope, $http, $routeParams,_User) {
+
+    $scope.pageName = "意见反馈";
+    $scope.loaded = false;
+    $scope.feedback = "";
+    var userID = _User.get().user_id;
+    $scope.feedback = function() {
+        $scope.loaded = true;
+        $scope.$digest();
+        var remoteData = $rootScope.host + "app/Us/addFeedback?feedback_info="+$scope.feedback+"&user_id="+userID;
+        $http.get(remoteData).success(function(data){
+            if ( data.status ) {
+                _Nofication.alert("感谢您的反馈，我们将竭诚为您服务","反馈提示","确定",function(){
+                    $scope.$apply(function(){
+                        $rootScope.back();
+                    });
+                });
+                return;
+            }
+            $scope.loaded = false;
+            _Nofication.alert("服务器忙,请重新提交","反馈提示","确定",function(){});
+        }).error(function(e){
+            $scope.loaded = false;
+            console.log(e);
+            console.log("feedback error");
+        });
+    }
+
+};
+var signInController = function ($window,$scope,$rootScope,$http,$location,_User,_Nofication) {
+    if ( _User.get() ) {
+        $location.path("/user").replace();
+        return;
+    }
+    $scope.pageName = "登录";
+    $scope.loaded = false;
+    $scope.signProfile = {
+        "telephone":"",
+        "password":""
+    }
+    $scope.signIn = function() {
+
+        if ( !( $scope.signProfile.telephone && $scope.signProfile.password )) {
+            _Nofication.alert("请输入登录信息再登录","错误提示","确定",function(){});
+            return;
+        }
+        var remoteData = $rootScope.host + "app/Login/in?telephone="+$scope.signProfile.telephone+"&password="+$scope.signProfile.password;
+        $scope.loaded = true;
+        $http.get(remoteData).success(function(data){
+            if ( !(data.status == 1)) {
+                _Nofication.alert("用户名密码不正确","错误提示","确定",function(){});
+                return;
+            }
+            _User.set(data.user);
+            $location.path("/index").replace();
+
+        }).error(function(e){
+            $scope.loaded = false;
+            console.log(e)
+            console.log("signIn error")
+        });
+    }
+}
+var signUpController = function ($window,$scope,$rootScope,$http,$location,_Nofication) {
+    $scope.pageName = "注册";
+    $scope.loaded = false;
+    $scope.step = 1;
+    $scope.signProfile = {
+        "telephone":"",
+        "passwordInit":"",
+        "passwordAgain":"",
+        "vertifyCode":""
+    };
+    $scope.getCode = function() {
+        console.log($scope.signProfile.telephone)
+        if ( !$scope.signProfile.telephone ) {
+            _Nofication.alert("请确保输入正确的手机号码","错误提示","确定",function(){});
+            return;
+        }
+        $scope.loaded = false;
+        $scope.manualGet();
+    }
+    $scope.setPassword = function () {
+        if ( !$scope.signProfile.vertifyCode && $scope.signProfile.vertifyCode == $scope.remoteCode ) {
+            _Nofication.alert("请确保输入正确的手机号码","错误提示","确定",function(){});
+            return;
+        }
+        $scope.loaded = false;
+        var remoteData = $rootScope.host + "";
+        $http.get("remote-data/index.json").success(function(data){
+            $scope.loaded = true;
+            $scope.pageName = "设置密码";
+            $scope.step = 3;
+        });
+    }
+    // 手动获取验证码
+    $scope.manualGet = function() {
+        var remoteData = $rootScope.host + "";
+        $http.get("remote-data/index.json").success(function(data){
+            $scope.loaded = true;
+            $scope.pageName = "获取验证码";
+            // $scope.remoteCode = data.code;
+            $scope.step = 2;
+        });
+    }
+    $scope.signUp = function () {
+        if ( !$scope.signProfile.passwordInit || !$scope.signProfile.passwordAgain) {
+            _Nofication.alert("密码不能为空","错误提示","确定",function(){});
+            return;
+        }
+        if ( $scope.signProfile.passwordInit != $scope.signProfile.passwordAgain) {
+            _Nofication.alert("两次输入的密码不相同","错误提示","确定",function(){});
+            return;
+        }
+        var remoteData = $rootScope.host + "app/Login/register?telephone="+$scope.signProfile.telephone+"&password="+$scope.signProfile.password;
+        $http.get(remoteData).success(function(data){
+            _User.set("user",data.user);
+            $location.path("/user").replace();
+        }).error(function(e){
+            console.log(e);
+            console.log("sign up error")
+        });
+    }
+}
+var forgetController = function ($window,$scope,$rootScope,$http,$location,_Nofication) {
+    $scope.pageName = "忘记密码";
+    $scope.loaded = false;
+    $scope.step = 1;
+    $scope.signProfile = {
+        "telephone":"",
+        "passwordInit":"",
+        "passwordAgin":"",
+        "vertifyCode":""
+    };
+    $scope.getCode = function() {
+        console.log($scope.signProfile.telephone)
+        if ( !$scope.signProfile.telephone ) {
+            _Nofication.alert("请确保输入正确的手机号码","错误提示","确定",function(){});
+            return;
+        }
+        $scope.loaded = false;
+        $scope.manualGet();
+    }
+    $scope.setPassword = function () {
+        if ( !$scope.signProfile.vertifyCode && $scope.signProfile.vertifyCode == $scope.remoteCode ) {
+            _Nofication.alert("请确保输入正确的手机号码","错误提示","确定",function(){});
+            return;
+        }
+        $scope.loaded = false;
+        var remoteData = $rootScope.host + "";
+        $http.get("remote-data/index.json").success(function(data){
+            $scope.loaded = true;
+            $scope.pageName = "设置密码";
+            $scope.step = 3;
+        });
+    }
+    // 手动获取验证码
+    $scope.manualGet = function() {
+        var remoteData = $rootScope.host + "";
+        $http.get("remote-data/index.json").success(function(data){
+            $scope.loaded = true;
+            $scope.pageName = "获取验证码";
+            // $scope.remoteCode = data.code;
+            $scope.step = 2;
+        });
+    }
+    $scope.signUp = function () {
+        var remoteData = $rootScope.host + "";
+        $http.get(remoteData).success(function(data){
+            $location.path("/index").replace();
+        });
+    }
+}

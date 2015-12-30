@@ -1,0 +1,20 @@
+<div class="text-center text-grey box box-lg" ng-class="loading">
+<span class="preloader"></span><span>正在加载</span></div>
+<div class="text-center text-grey box box-lg" ng-show="loaded && stores.length < 1"><div class="no-data blink"></div><div>暂无数据</div></div>
+<div ng-repeat="store in stores" ng-show="loaded">
+    <a ng-click="next()" ng-href="#/store_exchange/{{ store.id }}/{{ store.franchisee_id}}" class="block box bg-white info-section">
+        <div class="thumbnail">
+            <img class="block" ng-src="{{ store.cover }}" alt="">
+        </div>
+        <p class="text-light-grey big nowrap">{{ store.title }}</p>
+        <div class="row box box-tb">
+            <div class="col-xs-6 nowrap text-red">
+                {{ store.price }}
+            </div>
+            <div class="col-xs-6 nowrap text-light-grey text-right">
+                {{ store.total }}
+            </div>
+        </div>
+    </a>
+    <div class="line"></div>
+</div>

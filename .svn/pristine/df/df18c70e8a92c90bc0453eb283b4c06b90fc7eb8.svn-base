@@ -1,0 +1,4 @@
+<div class="text-center text-grey box box-lg">loading</div>
+<div class="box box-lg text-light-grey" ng-show="loaded">
+	{{ detail }}
+</div>

@@ -1,0 +1,171 @@
+paipaiwang.factory("_Geo", function($rootScope, $window, $http) {
+    return {
+        getCurrentPostion: function(onSuccess,onError) {
+            navigator.geolocation.getCurrentPosition(onSuccess,onError,{enableHighAccuracy: true});
+        },
+        getDefaultPosition:function(){
+            $http.get("remote-data/city_data.json", {
+                cache: true
+            }).success(function(data) {
+                $window.localStorage.setItem("province", data.province);
+                $window.localStorage.setItem("city", data.city);
+                $window.localStorage.setItem("districts", JSON.stringify(data.districts));
+                $window.localStorage.setItem("lat", data.lat);
+                $window.localStorage.setItem("lng", data.lng);
+            }).error(function(e) {
+                alert("暂时无法定位");
+            });
+        },
+        get: function(success, error) {
+            var geo = {
+                city: $window.localStorage.getItem("city"),
+                province: $window.localStorage.getItem("province"),
+                districts: JSON.parse($window.localStorage.getItem("districts")),
+                lat: $window.localStorage.getItem("lat"),
+                lng: $window.localStorage.getItem("lng")
+            };
+
+            return geo;
+        },
+        setCity: function(city) {
+            $window.localStorage.setItem("city", city);
+        },
+        setProvince:function(province) {
+            $window.localStorage.setItem("province", province);
+        },
+        setDistrict:function(districts) {
+            $window.localStorage.setItem("districts", districts);
+        }
+    }
+});
+paipaiwang.factory("_ShoppingCart", ["$cookieStore", function(cookies) {
+    var cart = {
+        itemsCookie: "",
+        init: function(itemsCookie) {
+            this.itemsCookie = itemsCookie;
+            // if cookie not define then put an empty array
+            if (!(cookies.get(this.itemsCookie) instanceof Array)) {
+                cookies.put(this.itemsCookie, []);
+                console.log(this.itemsCookie)
+            }
+        },
+        addItem: function(item, color, size, quantity) {
+
+            var items = cookies.get(this.itemsCookie),
+                self = this;
+
+            if (quantity === undefined) {
+                quantity = 1;
+            }
+
+            items.push({
+                id: item.id,
+                title: item.title,
+                price: item.price,
+                quantity: quantity,
+                size: size,
+                color: color
+            });
+            cookies.put(this.itemsCookie, items);
+        },
+        updateQuantity: function(index, quantity) {
+            var items = cookies.get(this.itemsCookie);
+            items[index].quantity = quantity;
+            cookies.put(this.itemsCookie, items);
+        },
+        removeItem: function(index) {
+            var items = cookies.get(this.itemsCookie);
+            items.splice(index, 1);
+            cookies.put(this.itemsCookie, items);
+        },
+        getAll: function() {
+            return cookies.get(this.itemsCookie);
+        },
+        merge: function(merge) {
+            var items = [];
+            angular.forEach(merge, function(item, index) {
+                items.push({
+                    id: item.id,
+                    title: item.title,
+                    price: item.price,
+                    quantity: item.quantity,
+                    size: item.size,
+                    color: item.color
+                });
+            });
+            cookies.put(this.itemsCookie, items);
+        }
+    }
+    return cart;
+}]);
+paipaiwang.factory("_User", ["$window", "$cookieStore", function($window, cookies) {
+    var user = {
+        get: function() {
+            return JSON.parse($window.localStorage.getItem("user"));
+        },
+        _cache: function(user) {
+            $window.localStorage.setItem("user", JSON.stringify(user));
+        },
+        login: function(name, password) {
+            var self = this;
+            $http.post("", {
+                "name": name,
+                "password": password
+            }).success(function(data) {
+                self._cache(data);
+            }).error(function(e) {
+
+            });
+        },
+        isLogin: function() {
+            return !!$window.localStorage.getItem("user");
+        },
+        exit: function() {
+            $window.localStorage.removeItem("user");
+        }
+    };
+    return user;
+}]);
+paipaiwang.factory("_CityCookie", ["$cookieStore", function(cookie) {
+    var geo = {
+        "city": cookie.get("city"),
+        "lng": cookie.get("lng"),
+        "lat": cookie.get("lat")
+    }
+    return geo;
+}]);
+// phonegap native interface injected to angular
+paipaiwang.factory("_Nofication", function() {
+    return {
+        alert: function(message, title, buttonText, buttonAction) {
+            navigator.notification.alert(message, buttonAction, title, buttonText);
+        }
+    };
+});
+// event handler
+paipaiwang.factory("_EventHandler",function($rootScope){
+    var onBackKeyDown = function() {
+        document.addEventListener("backbutton", onBackKeyDownHandler, false);
+    }
+    var onBackKeyDownHandler = function (e) {
+        $rootScope.slide="slide-right";
+        // e.preventDefault();
+    }
+    return {
+        "onBackKeyDown":onBackKeyDown
+    }
+});
+// check route
+var checkRouting = function($q, $rootScope, $location, $cookieStore, $http, _Nofication) {
+    if ($cookieStore.get("userProfile")) {
+        return true;
+    } else {
+        var deferred = $q.defer();
+        _Nofication.alert("You caused an alert.", "Alert", "Ok", function() {
+            $scope.message = "You clicked it!"
+        });
+        deferred.reject();
+        
+        return deferred.promise;
+    }
+};

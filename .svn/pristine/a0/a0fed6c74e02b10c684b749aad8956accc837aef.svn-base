@@ -1,0 +1,27 @@
+{
+    "HotProducts": {
+        "pageSize": 20,
+        "pageNumber": 1,
+        "list": [{
+            "id": 23,
+            "title": "夏天花点裙子",
+            "cover": "DSC017281.JPG",
+            "price": 58.0,
+            "sales_volume": null
+        }, {
+            "id": 25,
+            "title": "夏天花点裙子22",
+            "cover": "DSC01727.JPG",
+            "price": 58.5,
+            "sales_volume": null
+        }, {
+            "id": 26,
+            "title": "夏天花点裙子33",
+            "cover": "DSC01698.JPG",
+            "price": 58.5,
+            "sales_volume": null
+        }],
+        "totalRow": 3,
+        "totalPage": 1
+    }
+}

@@ -1,0 +1,6 @@
+<div class="header flexbox">
+    <a class="block ng-back"></a>
+    <div class="flex-item text-center large ng-title">{{ pageName }}</div>
+    <label class="cog" ng-init="edit=0" ng-show="edit == 0" ><input type="radio" class="hide" ng-model="edit" value="1">编辑</label>
+    <label class="cog" ng-clidk="" ng-show="edit == 1"><input type="radio" class="hide" ng-model="edit" value="0">完成</label>
+</div>

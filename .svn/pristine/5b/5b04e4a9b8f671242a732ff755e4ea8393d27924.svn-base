@@ -1,0 +1,17 @@
+<div ng-include="'partials/catalogs/catalog_nav.html'" class="scroll"></div>
+<div class="flex-item scroll bg-white">
+    <div class="text-center box box-lg text-grey" ng-class="loading">
+<span class="preloader"></span><span>正在加载</span></div>
+    <div class="catalog-content" ng-show="loaded">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4" ng-repeat="catalog in catalogs">
+                    <a ng-click="next()" ng-href="#/catalog/{{ catalog.id }}/{{ catalog.sub_catalog }}" class="block border-box catalog-clothes box box-mb text-center">
+                        <div class="default-image" style="height:148px"><img ng-src="{{ IMG_PATH + catalog.cover }}" alt="" class="block"></div>
+                        <span class="block text-light-grey x-small nowrap">{{ catalog.sub_catalog }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

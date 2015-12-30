@@ -1,0 +1,5 @@
+<div class="footer flexbox">
+    <div class="flex-item row">
+        <div class="col-xs-offset-4 col-xs-4 text-center box"><a ng-href="#/address_new" ng-click="next()" class="btn btn-danger block">添加新地址</a></div>
+    </div>
+</div>

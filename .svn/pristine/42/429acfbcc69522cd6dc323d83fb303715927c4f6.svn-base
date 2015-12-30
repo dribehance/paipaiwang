@@ -1,0 +1,53 @@
+<div class="container">
+    <ul class="ls row box">
+    <li class="col-xs-3">
+        <a ng-click="next()" href="#/strategy" class="block text-center index-icon">
+            <img ng-src="img/book.png" alt="" class="block">
+            <em class="block text-center x-small nowrap">拍币攻略</em>
+        </a>
+    </li>
+    <li class="col-xs-3">
+        <a ng-click="next()" href="#/hot" class="block text-center index-icon">
+            <img ng-src="img/hot.png" alt="" class="block">
+            <em class="block text-center x-small nowrap">热卖商品</em>
+        </a>
+    </li>
+    <li class="col-xs-3">
+        <a ng-click="next()" href="#/catalog" class="block text-center index-icon">
+            <img ng-src="img/grid.png" alt="" class="block">
+            <em class="block text-center x-small nowrap">分类换购</em>
+        </a>
+    </li>
+    <li class="col-xs-3">
+        <a ng-click="next()" href="#/auctions" class="block text-center index-icon">
+            <img ng-src="img/hammer.png" alt="" class="block">
+            <em class="block text-center x-small nowrap">竞拍</em>
+        </a>
+    </li>
+    <li class="clearfix box"></li>
+    <li class="col-xs-3">
+        <a ng-click="next()" href="#lucky_auctions" class="block text-center index-icon">
+            <img ng-src="img/clover.png" alt="" class="block">
+            <em class="block text-center x-small nowrap">幸运拍</em>
+        </a>
+    </li>
+    <li class="col-xs-3">
+        <a ng-click="next()" href="#/charge" class="block text-center index-icon">
+            <img ng-src="img/phone.png" alt="" class="block">
+            <em class="block text-center x-small nowrap">话费充值</em>
+        </a>
+    </li>
+    <li class="col-xs-3">
+        <a ng-click="next()" href="#/index" class="block text-center index-icon">
+            <img ng-src="img/heart.png" alt="" class="block">
+            <em class="block text-center x-small nowrap">拍米公益</em>
+        </a>
+    </li>
+    <li class="col-xs-3">
+        <a ng-click="next()" href="#/orders" class="block text-center index-icon">
+            <img ng-src="img/order.png" alt="" class="block">
+            <em class="block text-center x-small nowrap">全部订单</em>
+        </a>
+    </li>
+</ul>
+</div>

@@ -1,0 +1,46 @@
+<div class="box box-lg address-bar">
+    <a ng-href="#/addresses/dd" ng-click="next()" class="block">
+        <div class="row">
+            <div class="col-xs-6 text-grey nowrap">
+                <span>收件人</span>
+                <span>王成林</span>
+            </div>
+            <div class="col-xs-6 text-grey nowrap">
+                <span>电话：</span>
+                <span>18273734950</span>
+            </div>
+        </div>
+        <div class="row text-grey nowrap">
+            <div class="col-xs-12">
+                北京市朝阳区建国路88号
+            </div>
+        </div>
+    </a>
+    <label ng-init="address=1" class="box-tb radio-label {{address == '1'?'active':''}}">
+        <input type="radio" ng-model="address" class="hide" value="1">
+    </label>
+</div>
+<div class="line"></div>
+<div class="box box-lg address-bar">
+    <a ng-href="#/addresses/dd" ng-click="next()" class="block">
+        <div class="row">
+            <div class="col-xs-6 text-grey nowrap">
+                <span>收件人</span>
+                <span>王成林</span>
+            </div>
+            <div class="col-xs-6 text-grey nowrap">
+                <span>电话：</span>
+                <span>18273734950</span>
+            </div>
+        </div>
+        <div class="row text-grey nowrap">
+            <div class="col-xs-12">
+                北京市朝阳区建国路88号
+            </div>
+        </div>
+    </a>
+    <label class="box-tb radio-label {{address == '2'?'active':''}}">
+        <input type="radio" ng-model="address" class="hide" value="2">
+    </label>
+</div>
+<div class="line"></div>

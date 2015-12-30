@@ -1,0 +1,10 @@
+<div class="box box-lg">
+	<form ng-submit="signIn()" name="signIn">
+		<input type="tel" class="block box box-lg text-grey pretty-input" ng-model="telephone" placeholder="手机号">
+		<div class="line"></div>
+		<input type="password" class="block box box-lg text-grey pretty-input" ng-model="password" placeholder="密码">
+		<div class="box"></div>
+		<input type="submit" class="btn btn-danger btn-lg block text-center" id="submit" value="登录" />
+	</form>
+	<a ng-href="#/forget" ng-click="next()" class="text-red">忘记密码</a>
+</div>

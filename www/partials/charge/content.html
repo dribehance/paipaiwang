@@ -1,0 +1,42 @@
+<div class="input-group block input-group-lg box-mb box box-lg">
+    <input type="text" class="form-control" ng-model="meta.telephone">
+</div>
+<div class="box box-lg text-red" ng-show="err">{{ errTelMessage }}</div>
+<div class="row box box-lg">
+    <div class="col-xs-4">
+        <label class="btn btn-{{ meta.money == '100' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="meta.money" ng-init="meta.money=100" value="100">100元
+        </label>
+    </div>
+    <div class="col-xs-4">
+        <label class="btn btn-{{ meta.money == '200' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="meta.money" value="200">200元
+        </label>
+    </div>
+    <!-- <div class="col-xs-4">
+        <label class="btn btn-{{ meta.money == '300' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="meta.money" value="300">300元
+        </label>
+    </div> -->
+</div>
+<!-- <div class="row box box-lg">
+    <div class="col-xs-4">
+        <label class="btn btn-{{ meta.money == '400' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="meta.money" value="400">400元
+        </label>
+    </div>
+    <div class="col-xs-4">
+        <label class="btn btn-{{ meta.money == '500' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="meta.money" value="500">500元
+        </label>
+    </div>
+    <div class="col-xs-4">
+        <label class="btn btn-{{ meta.money == '600' ? 'danger':'default'}} btn-lg block">
+            <input type="radio" class="hide" ng-model="meta.money" value="600">600元
+        </label>
+    </div>
+</div> -->
+<div class="box box-lg">
+	<a ng-href="javascript:void(0)" ng-click="charge()" class="btn btn-danger btn-lg text-center block">确定</a>
+</div>
+<!-- <iframe src="http://wap.007ka.cn" frameborder="0" height="100%" width="100%"></iframe> -->

@@ -1,0 +1,8 @@
+<div class="box box-lg">
+	<div class="bg-white box-mb">
+		<input type="text" class="block box box-lg text-grey pretty-input" placeholder="原密码">
+		<input type="text" class="block box box-lg text-grey pretty-input box-shadow" placeholder="新密码">
+		<input type="text" class="block box box-lg text-grey pretty-input box-shadow" placeholder="再次输入新密码">
+	</div>
+	<a href="" ng-click="back()" class="btn block btn-danger btn-lg">确认修改</a>
+</div>

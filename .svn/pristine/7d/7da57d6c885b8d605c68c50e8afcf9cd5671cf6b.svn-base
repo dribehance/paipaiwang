@@ -1,0 +1,121 @@
+paipaiwang.factory("_Geo",function($rootScope,$window,$http){
+	return {
+		getCurrentPostion:function() {
+			$http.get("remote-data/city.json",{cache:true}).success(function(data){
+				$window.localStorage.setItem("city",data.city);
+				$window.localStorage.setItem("lat",data.lat);
+				$window.localStorage.setItem("lng",data.lng);
+			}).error(function(e){
+				alert("暂时无法定位");
+			});
+		},
+		get:function(success,error) {
+			var geo = {
+				city:$window.localStorage.getItem("city"),
+				lat:$window.localStorage.getItem("lat"),
+				lng:$window.localStorage.getItem("lng")
+			};
+
+			return geo;
+		},
+		setCity:function(city) {
+			$window.localStorage.setItem("city",city);
+		}
+	}
+});
+paipaiwang.factory("_ShoppingCart",["$cookieStore",function(cookies){
+	var cart = {
+		itemsCookie:"",
+		init:function(itemsCookie){
+			this.itemsCookie = itemsCookie;
+			// if cookie not define then put an empty array
+			if ( !(cookies.get(this.itemsCookie) instanceof Array )) {
+				cookies.put(this.itemsCookie,[]);
+				console.log(this.itemsCookie)
+			}
+		},
+		addItem:function(item,color,size,quantity){
+
+			var items = cookies.get(this.itemsCookie),
+				self = this;
+
+			if (quantity === undefined ) {
+				quantity = 1;
+			}
+			
+			items.push({
+				id:item.id,
+				title:item.title,
+				price:item.price,
+				quantity:quantity,
+				size:size,
+				color:color
+			});
+			cookies.put(this.itemsCookie,items);
+		},
+		updateQuantity:function(index,quantity){
+			var items = cookies.get(this.itemsCookie);
+			items[index].quantity = quantity;
+			cookies.put(this.itemsCookie,items);
+		},
+		removeItem:function(index){
+			var items = cookies.get(this.itemsCookie);
+			items.splice(index,1);
+			cookies.put(this.itemsCookie,items);
+		},
+		getAll:function(){
+			return cookies.get(this.itemsCookie);
+		},
+		merge:function(merge){
+			var items = [];
+			angular.forEach(merge,function(item,index){
+				items.push({
+					id:item.id,
+					title:item.title,
+					price:item.price,
+					quantity:item.quantity,
+					size:item.size,
+					color:item.color
+				});
+			});
+			cookies.put(this.itemsCookie,items);
+		}
+	}
+	return cart;
+}]);
+paipaiwang.factory("_User",["$window","$cookieStore",function($window,cookies){
+	var user = {
+		get:function() {
+			return JSON.parse($window.localStorage.getItem("user"));
+		},
+		_cache:function(user){
+			$window.localStorage.setItem("user",JSON.stringify(user));
+		},
+		login:function(name,password) {
+			var self = this;
+			$http.post("",{
+				"name":name,
+				"password":password
+			}).success(function(data){
+				self._cache(data);
+			}).error(function(e){
+
+			});
+		},
+		isLogin:function(){
+			return !!$window.localStorage.getItem("user");
+		},
+		exit:function() {
+			$window.localStorage.removeItem("user");
+		}
+	};
+	return user;
+}]);
+paipaiwang.factory("_CityCookie",["cookieStore",function(cookie){
+	var geo = {
+		"city": cookie.get("city"),
+		"lng": cookie.get("lng"),
+		"lat": cookie.get("lat")
+	}
+	return geo;
+}]);

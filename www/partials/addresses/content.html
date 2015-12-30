@@ -1,0 +1,27 @@
+<div ng-class="loading" class="text-grey text-center box box-lg">
+<span class="preloader"></span><span>正在加载</span></div>
+<div ng-repeat="address in addresses" ng-show="loaded">
+    <div class="box box-lg address-bar">
+        <a ng-href="#/addresses/{{ address.id }}" ng-click="next()" class="block">
+            <div class="row">
+                <div class="col-xs-6 text-grey nowrap">
+                    <span>收件人</span>
+                    <span>{{ address.addressee }}</span>
+                </div>
+                <div class="col-xs-6 text-grey nowrap">
+                    <span>电话：</span>
+                    <span>{{ address.telephone }}</span>
+                </div>
+            </div>
+            <div class="row text-grey nowrap">
+                <div class="col-xs-12">
+                    {{ address.province + address.city + address.street }}
+                </div>
+            </div>
+        </a>
+        <label class="box-tb radio-label {{ defaultAddress == address.status?'active':''}}">
+            <input type="radio" ng-model="defaultAddress" class="hide" value="{{ $index }}">
+        </label>
+    </div>
+    <div class="line"></div>
+</div>

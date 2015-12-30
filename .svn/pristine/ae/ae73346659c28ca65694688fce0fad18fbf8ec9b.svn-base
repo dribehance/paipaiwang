@@ -1,0 +1,40 @@
+<div class="banner default-image">
+    <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: 5000, stopOnHover: true,  
+        slideSpeed : 300, paginationSpeed : 400, singleItem : true}">
+        <div>
+            <a ng-href="#/product/{{banners.cover_1_p }}" ng-click="next()" class="block">
+            	<img class="block" ng-src="{{ bannerHost + banners.cover_1 }}" />
+            </a>
+        </div>
+        <div>
+            <a ng-href="#/product/{{banners.cover_2_p }}" ng-click="next()" class="block">
+            	<img class="block" ng-src="{{ bannerHost + banners.cover_2 }}" />
+            </a>
+        </div>
+        <div>
+            <a ng-href="#/product/{{banners.cover_3_p }}" ng-click="next()" class="block">
+            	<img class="block" ng-src="{{ bannerHost + banners.cover_3 }}" />
+            </a>
+        </div>
+        <div>
+            <a ng-href="#/product/{{banners.cover_4_p }}" ng-click="next()" class="block">
+            	<img class="block" ng-src="{{ bannerHost + banners.cover_4 }}" />
+            </a>
+        </div>
+        <div>
+            <a ng-href="#/product/{{banners.cover_5_p }}" ng-click="next()" class="block">
+            	<img class="block" ng-src="{{ bannerHost + banners.cover_5 }}" />
+            </a>
+        </div>
+        <div>
+            <a ng-href="#/product/{{banners.cover_6_p }}" ng-click="next()" class="block">
+            	<img class="block" ng-src="{{ bannerHost + banners.cover_6 }}" />
+            </a>
+        </div>
+        <div>
+            <a ng-href="#/product/{{banners.cover_7_p }}" ng-click="next()" class="block">
+            	<img class="block" ng-src="{{ bannerHost + banners.cover_7 }}" />
+            </a>
+        </div>
+    </wrap-owlcarousel>
+</div>

@@ -1,0 +1,83 @@
+paipaiwang.factory("_City",function($rootScope,$window){
+	return {
+		get:function () {
+			return $window.localStorage.getItem("city");
+		},
+		set:function(city) {
+			$rootScope.CITY = city;
+			$window.localStorage.setItem("city",$rootScope.CITY);
+		}
+	}
+});
+paipaiwang.factory("_Geo",function($rootScope,$window,$http){
+	return {
+		getCurrentPosition:function(success,error) {
+			$http.get("remote-data/city.json").success(function(data){
+				success(data);
+			}).error(function(e){
+				error(e);
+				alert("暂时无法定位");
+			});
+		}
+	}
+});
+paipaiwang.factory("_ShoppingCart",["$cookieStore",function(cookies){
+	var cart = {
+		itemsCookie:"",
+		init:function(itemsCookie){
+			this.itemsCookie = itemsCookie;
+			// if cookie not define then put an empty array
+			if ( !(cookies.get(this.itemsCookie) instanceof Array )) {
+				cookies.put(this.itemsCookie,[]);
+				console.log(this.itemsCookie)
+			}
+		},
+		addItem:function(item,color,size,quantity){
+
+			var items = cookies.get(this.itemsCookie),
+				self = this;
+
+			if (quantity === undefined ) {
+				quantity = 1;
+			}
+			
+			items.push({
+				id:item.id,
+				title:item.title,
+				price:item.price,
+				quantity:quantity,
+				size:size,
+				color:color
+			});
+			cookies.put(this.itemsCookie,items);
+		},
+		updateQuantity:function(index,quantity){
+			var items = cookies.get(this.itemsCookie);
+			items[index].quantity = quantity;
+			cookies.put(this.itemsCookie,items);
+		},
+		removeItem:function(index){
+			var items = cookies.get(this.itemsCookie);
+			items.splice(index,1);
+			cookies.put(this.itemsCookie,items);
+		},
+		getAll:function(){
+			return cookies.get(this.itemsCookie);
+		},
+		merge:function(merge){
+			var items = [];
+			angular.forEach(merge,function(item,index){
+				items.push({
+					id:item.id,
+					title:item.title,
+					price:item.price,
+					quantity:item.quantity,
+					size:item.size,
+					color:item.color
+				});
+			});
+			cookies.put(this.itemsCookie,items);
+		}
+	}
+	return cart;
+}]);

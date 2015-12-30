@@ -1,0 +1,5 @@
+<div class="header flexbox">
+    <a href="#/provinces" ng-click="next()" class="cog">{{ city ? city.split("市")[0]:'深圳' }}[切换]</a>
+    <div class="flex-item text-center big ng-title">{{ pageName }}</div>
+    <div class="cog"></div>
+</div>

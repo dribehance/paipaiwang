@@ -1,0 +1,14 @@
+<div class="box box-lg bg-white box-mb">
+	<div class="row">
+		<div class="col-xs-6 nowrap">
+			<span class="text-green">系统消息</span>
+		</div>
+		<div class="col-xs-6 text-light-grey nowrap text-right">
+			2014.05.01 15:22
+		</div>
+	</div>
+	<div class="line box-mt"></div>
+	<div class="box box-lg text-grey">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor voluptas et ea odio voluptatum architecto facilis aperiam iste minus, ducimus quibusdam numquam, nobis, error laborum totam sapiente, culpa illum earum!	
+	</div>
+</div>

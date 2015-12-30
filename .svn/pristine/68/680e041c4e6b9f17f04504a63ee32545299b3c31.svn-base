@@ -1,0 +1,14 @@
+<p class="order-tip text-center text-red large" ng-show=" auction.status == 1 ">
+	您的订单提交成功！
+	<div>已冻结您账户{{ consumer }}拍币</div>
+</p>
+<p class="order-tip text-center text-red large" ng-show=" auction.status == -1 ">账户拍币不足！</p>
+<p class="order-tip text-center text-red large" ng-show=" auction.status == 0 ">竞拍已经结束了！</p>
+<div class="row box">
+	<div class="col-xs-6">
+		<a ng-href="#/index" ng-click="jump()" class="btn btn-danger block btn-lg">回到首页</a>
+	</div>
+	<div class="col-xs-6">
+		<a ng-href="#/auction_orders" ng-click="jump()" class="btn btn-danger block btn-lg">查看我的竞拍</a>
+	</div>
+</div>

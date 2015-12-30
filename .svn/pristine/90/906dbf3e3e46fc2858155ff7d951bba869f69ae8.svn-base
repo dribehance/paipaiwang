@@ -1,0 +1,19 @@
+<div class="box box-lg">
+    <div class="comment-list row">
+        <div class="row text-light-grey">
+            <div class="col-xs-6 nowrap text-left">网友评论</div>
+            <div class="col-xs-6 nowrap text-right"><a href="#/store_comments/sss" ng-click="next()" class="text-light-grey">查看14条评论</a></div>
+        </div>
+        <div class="comment-item">
+            <h4 class="text-red">{{ comment.username }}sss</h4>
+            <p class="nowrap text-darkgrey">{{ comment.content }}ssss</p>
+
+            <img class="avatar" src="" alt="">
+            <div class="stars">
+                <span class="star-icon"></span>
+            </div>
+            <div class="date text-grey">{{ comment.post_time }}ssss</div>
+            <div class="line"></div>
+        </div>
+    </div>
+</div>

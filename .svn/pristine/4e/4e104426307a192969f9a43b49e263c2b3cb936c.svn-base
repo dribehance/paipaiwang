@@ -1,0 +1,3 @@
+<div ng-include="'partials/index/header.html'"></div>
+<div ng-include="'partials/index/content.html'" class="flex-item scroll"></div>
+<div ng-include="'partials/footer.html'"></div>

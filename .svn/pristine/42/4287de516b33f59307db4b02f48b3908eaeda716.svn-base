@@ -1,0 +1,5 @@
+<div class="header flexbox">
+    <a href="#/index" class="block ng-back" ng-click="jump()"><span class="back-icon"></span></a>
+    <div class="flex-item text-center large ng-title">{{ pageName }}</div>
+    <div class="cog"></div>
+</div>

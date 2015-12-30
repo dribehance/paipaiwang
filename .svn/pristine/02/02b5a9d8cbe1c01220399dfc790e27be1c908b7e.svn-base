@@ -1,0 +1,207 @@
+paipaiwang.factory("_Geo", function($rootScope, $window, $http,_Nofication) {
+    return {
+        getCurrentPosition: function() {
+            $rootScope.located = false;
+            var self = this;
+            navigator.geolocation.getCurrentPosition(function(position){
+                setTimeout(function(){
+                    $rootScope.$apply(function(){
+                        self.setLat("lat",position.coords.latitude);
+                        self.setLng("lng",position.coords.longitude);
+                        $http.jsonp("http://api.map.baidu.com/geocoder/v2/?ak=Nn6KEtPMmGsWm5eb6IG1EKGy&callback=JSON_CALLBACK&location="+position.coords.latitude+","+position.coords.longitude+"&output=json&pois=0").success(function(data){
+                            self.setCity(data.result.addressComponent.city);
+                        });
+                        $rootScope.located = true;
+                    });
+                },500);
+            },function(e){
+                if (e.code == e.PERMISSION_DENIED) {
+                    _Nofication.alert("定位失败，请打开手机定位服务！","无法定位","确定",function(){});
+                    return;
+                }
+                if (e.code == e.POSITION_UNAVAILABLE) {
+                    _Nofication.alert("暂时无法定位，请确保手机连接网络！","无法定位","确定",function(){});
+                    return;
+                }
+                if (e.code == e.TIMEOUT) {
+                    _Nofication.alert("定位超时，请重试！","无法定位","确定",function(){});
+                    return;
+                }
+                alert("erroraaaa")
+                // alert(e.message)
+
+            },{maximumAge: 3000, timeout: 5000,enableHighAccuracy: true});
+        },
+        getDefaultPosition:function(){
+            $http.get("remote-data/city_data.json", {
+                cache: true
+            }).success(function(data) {
+                $window.localStorage.setItem("province", data.province);
+                $window.localStorage.setItem("city", data.city);
+                $window.localStorage.setItem("districts", JSON.stringify(data.districts));
+                $window.localStorage.setItem("lat", data.lat);
+                $window.localStorage.setItem("lng", data.lng);
+            }).error(function(e) {
+                alert("暂时无法定位");
+            });
+        },
+        get: function() {
+            var geo = {
+                city: $window.localStorage.getItem("city"),
+                province: $window.localStorage.getItem("province"),
+                districts: JSON.parse($window.localStorage.getItem("districts")),
+                lat: $window.localStorage.getItem("lat"),
+                lng: $window.localStorage.getItem("lng")
+            };
+
+            return geo;
+        },
+        setCity: function(city) {
+            $window.localStorage.setItem("city", city);
+        },
+        setProvince:function(province) {
+            $window.localStorage.setItem("province", province);
+        },
+        setDistrict:function(districts) {
+            $window.localStorage.setItem("districts", districts);
+        },
+        setLat:function(lat) {
+            $window.localStorage.setItem("lat", lat);
+        },
+        setLng:function(lng) {
+            $window.localStorage.setItem("lng", lng);
+        }
+    }
+});
+paipaiwang.factory("_ShoppingCart", ["$cookieStore", function(cookies) {
+    var cart = {
+        itemsCookie: "",
+        init: function(itemsCookie) {
+            this.itemsCookie = itemsCookie;
+            // if cookie not define then put an empty array
+            if (!(cookies.get(this.itemsCookie) instanceof Array)) {
+                cookies.put(this.itemsCookie, []);
+                console.log(this.itemsCookie)
+            }
+        },
+        addItem: function(item, color, size, quantity) {
+
+            var items = cookies.get(this.itemsCookie),
+                self = this;
+
+            if (quantity === undefined) {
+                quantity = 1;
+            }
+
+            items.push({
+                id: item.id,
+                title: item.title,
+                price: item.price,
+                quantity: quantity,
+                size: size,
+                color: color
+            });
+            cookies.put(this.itemsCookie, items);
+        },
+        updateQuantity: function(index, quantity) {
+            var items = cookies.get(this.itemsCookie);
+            items[index].quantity = quantity;
+            cookies.put(this.itemsCookie, items);
+        },
+        removeItem: function(index) {
+            var items = cookies.get(this.itemsCookie);
+            items.splice(index, 1);
+            cookies.put(this.itemsCookie, items);
+        },
+        getAll: function() {
+            return cookies.get(this.itemsCookie);
+        },
+        merge: function(merge) {
+            var items = [];
+            angular.forEach(merge, function(item, index) {
+                items.push({
+                    id: item.id,
+                    title: item.title,
+                    price: item.price,
+                    quantity: item.quantity,
+                    size: item.size,
+                    color: item.color
+                });
+            });
+            cookies.put(this.itemsCookie, items);
+        }
+    }
+    return cart;
+}]);
+paipaiwang.factory("_User", ["$window", "$cookieStore","$location", function($window, cookies,$location) {
+    var user = {
+        get: function() {
+            return JSON.parse($window.localStorage.getItem("user"));
+        },
+        _cache: function(user) {
+            $window.localStorage.setItem("user", JSON.stringify(user));
+        },
+        login: function() {
+            $location.path("/sign_in").replace();
+        },
+        isLogin: function() {
+            return !!$window.localStorage.getItem("user");
+        },
+        exit: function() {
+            $window.localStorage.removeItem("user");
+        }
+    };
+    return user;
+}]);
+paipaiwang.factory("_CityCookie", ["$cookieStore", function(cookie) {
+    var geo = {
+        "city": cookie.get("city"),
+        "lng": cookie.get("lng"),
+        "lat": cookie.get("lat")
+    }
+    return geo;
+}]);
+// phonegap native interface injected to angular
+paipaiwang.factory("_Nofication", function() {
+    return {
+        alert: function(message, title, buttonText, buttonAction) {
+            navigator.notification.alert(message, buttonAction, title, buttonText);
+        }
+    };
+});
+// event handler
+paipaiwang.factory("_EventHandler",function($rootScope){
+    var onBackKeyDown = function() {
+        document.addEventListener("backbutton", onBackKeyDownHandler, false);
+    }
+    var onBackKeyDownHandler = function (e) {
+        $rootScope.$apply(function(){
+            $rootScope.back();
+        });
+        e.preventDefault();
+    }
+    return {
+        "onBackKeyDown":onBackKeyDown
+    }
+});
+// check route
+var checkRouting = function($q, $rootScope, $location, $http, _Nofication,_User) {
+    console.log(_User.get())
+    if (_User.get()) {
+        return true;
+    } else {
+        var deferred = $q.defer();
+        // _Nofication.alert("You caused an alert.", "Alert", "Ok", function() {
+        //     $scope.message = "You clicked it!"
+        // });
+        $rootScope.slide = "fadeIn";
+        $location.path("/sign_in").replace();
+        deferred.reject();
+        
+        return deferred.promise;
+    }
+};
+// geo location
+var renderReverse = function (geo) {
+
+}

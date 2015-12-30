@@ -1,0 +1,88 @@
+{
+    "info": {
+        "summary": "1994年秋季诞生于美国纽约曼哈顿，由James Jebbia创办。说来奇怪，James Jebbia虽然很喜欢以及热爱滑板运动，自己却是不懂滑板的。supreme的本意是最高、至上的。Supreme是结合滑板、Hip-hop等文化并主要以滑板为主的美国街头服饰品牌。",
+        "include_mail": 1,
+        "sales_volume": 1,
+        "brand_id": 1,
+        "id": 4,
+        "pictures_2": null,
+        "pictures_3": null,
+        "cover": "1",
+        "title": "1",
+        "price": 1.0,
+        "name": "Supreme",
+        "introduction": "1",
+        "catalog_id": 1,
+        "pictures_1": "1"
+    },
+    "comment": {
+        "currentPage": 1,
+        "totalPage": 1,
+        "contents": [{
+            "content": "nihaoa",
+            "username": "xiaohong",
+            "product_id": 4,
+            "meta_2": "123",
+            "star": 5,
+            "meta_1": "12",
+            "post_time": "2014-09-10 00:00:00"
+        }, {
+            "content": "nfsjdkfjl",
+            "username": "xiaoliang",
+            "product_id": 4,
+            "meta_2": "123",
+            "star": null,
+            "meta_1": "12",
+            "post_time": null
+        }, {
+            "content": "xiaohonghua",
+            "username": "阳光下的微笑",
+            "product_id": 4,
+            "meta_2": "123",
+            "star": 4,
+            "meta_1": "12",
+            "post_time": "2014-09-12 16:07:03"
+        }]
+    },
+    "order": {
+        "currentPage": 1,
+        "totalPage": 1,
+        "contents": [{
+            "total": 1,
+            "username": "阳光下的微笑",
+            "product_id": 4,
+            "status": "4",
+            "meta_2": "123",
+            "meta_1": "12",
+            "type": 1,
+            "post_time": "2014-09-10"
+        }, {
+            "total": 1,
+            "username": "阳光下的微笑",
+            "product_id": 4,
+            "status": "4",
+            "meta_2": "123",
+            "meta_1": "12",
+            "type": 1,
+            "post_time": "2014-09-10"
+        }, {
+            "total": 1,
+            "username": "阳光下的微笑",
+            "product_id": 4,
+            "status": "4",
+            "meta_2": "123",
+            "meta_1": "12",
+            "type": 1,
+            "post_time": "2014-09-10"
+        }, {
+            "total": 1,
+            "username": "阳光下的微笑",
+            "product_id": 4,
+            "status": "4",
+            "meta_2": "123",
+            "meta_1": "12",
+            "type": 1,
+            "post_time": "2014-09-10"
+        }]
+    }
+}

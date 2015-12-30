@@ -1,0 +1,5 @@
+<div class="header flexbox">
+    <a class="block ng-back"></a>
+    <div class="flex-item text-center large ng-title">{{ pageName }}</div>
+    <label class="cog" ng-click="toggleAction()">{{ actionMenu }}</label>
+</div>

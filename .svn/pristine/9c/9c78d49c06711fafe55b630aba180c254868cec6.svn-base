@@ -1,0 +1,22 @@
+<ul class="ls">
+    <li>
+        <label class="ng-label box-lr text-left">
+            <input type="radio" class="hide" ng-click="switchCity('北京');" ng-model="city" value="北京">北京</label>
+        <div class="line grey"></div>
+    </li>
+    <li>
+        <label class="ng-label box-lr text-left">
+            <input type="radio" class="hide" ng-click="switchCity('上海');" ng-model="city" value="上海">上海</label>
+        <div class="line grey"></div>
+    </li>
+    <li>
+        <label class="ng-label box-lr text-left">
+            <input type="radio" class="hide" ng-click="switchCity('广州');" ng-model="city" value="广州">广州</label>
+        <div class="line grey"></div>
+    </li>
+    <li>
+        <label class="ng-label box-lr text-left">
+            <input type="radio" class="hide" ng-click="switchCity('深圳');" ng-model="city" value="深圳">深圳</label>
+        <div class="line grey"></div>
+    </li>
+</ul>

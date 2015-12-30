@@ -1,0 +1,8 @@
+<div class="box box-lg">
+	<div class="bg-white box-mb">
+		<input type="text" class="block box box-lg text-grey pretty-input" ng-model="signProfile.oldPassword" placeholder="原密码">
+		<input type="password" class="block box box-lg text-grey pretty-input box-shadow" ng-model="signProfile.newPassword" placeholder="新密码">
+		<input type="password" class="block box box-lg text-grey pretty-input box-shadow" ng-model="signProfile.newPasswordAgain" placeholder="再次输入新密码">
+	</div>
+	<a ng-click="modify()" class="btn block btn-danger btn-lg">确认修改</a>
+</div>
